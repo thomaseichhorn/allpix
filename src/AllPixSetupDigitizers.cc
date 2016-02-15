@@ -17,6 +17,8 @@
 
 // Included by newdigitizer.sh script --> Medipix3RX
 #include "AllPixMedipix3RXDigitizer.hh"
+// Included by newdigitizer.sh script --> CMSp1
+#include "AllPixCMSp1Digitizer.hh"
 // __endofheader__
 
 // geometry
@@ -138,6 +140,13 @@ void AllPixEventAction::SetupDigitizers(){
 // Included by newdigitizer.sh script --> Medipix3RX
 else if (digitizerName == "Medipix3RX") {
 			AllPixMedipix3RXDigitizer * dp = new AllPixMedipix3RXDigitizer(digitizerModulesNames[itr] , hcName, digitColectionName);
+			dmPtr = static_cast<AllPixDigitizerInterface *> (dp);
+			cout << "    Setting up a " << digitizerName << " digitizer for det : " << detectorId << endl;
+		}
+ 
+// Included by newdigitizer.sh script --> CMSp1
+else if (digitizerName == "CMSp1") {
+			AllPixCMSp1Digitizer * dp = new AllPixCMSp1Digitizer(digitizerModulesNames[itr] , hcName, digitColectionName);
 			dmPtr = static_cast<AllPixDigitizerInterface *> (dp);
 			cout << "    Setting up a " << digitizerName << " digitizer for det : " << detectorId << endl;
 		}
