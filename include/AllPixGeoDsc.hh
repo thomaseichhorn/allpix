@@ -119,6 +119,8 @@ public:
 	G4double GetCrossTalk(){return m_Cross_Talk;};
 	G4double GetSaturationEnergy(){return m_Saturation_Energy;};
 
+	G4ThreeVector GetEFieldFromMap(G4ThreeVector);
+
 	G4bool GetEFieldBoolean(){return m_efieldfromfile;};
 
 
