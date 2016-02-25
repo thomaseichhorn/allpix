@@ -11,6 +11,12 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <tuple>
+#include <sys/stat.h>
+#include <unistd.h>
+#include <map>
+#include <math.h>
+#include "G4ThreeVector.hh"
 
 #include "CLHEP/Units/SystemOfUnits.h"
 using namespace CLHEP;
@@ -104,14 +110,18 @@ public:
 	G4double GetWorldDY(){return 2.*GetHalfWorldDY();};
 	G4double GetWorldDZ(){return 2.*GetHalfWorldDZ();};
 
-    G4int GetMIPTot(){return m_MIP_Tot;}	
-	G4double GetMIPCharge(){return m_MIP_Charge;}	
-	G4int GetCounterDepth(){return m_Counter_Depth;}		
-	G4double GetClockUnit(){return m_Clock_Unit;}		
-	G4double GetChipNoise(){return m_Chip_Noise;}			
-	G4double GetThreshold(){return m_Chip_Threshold;}	
-	G4double GetCrossTalk(){return m_Cross_Talk;}			
-	G4double GetSaturationEnergy(){return m_Saturation_Energy;}	
+  G4int GetMIPTot(){return m_MIP_Tot;};
+	G4double GetMIPCharge(){return m_MIP_Charge;};
+	G4int GetCounterDepth(){return m_Counter_Depth;};
+	G4double GetClockUnit(){return m_Clock_Unit;};
+	G4double GetChipNoise(){return m_Chip_Noise;}
+	G4double GetThreshold(){return m_Chip_Threshold;};
+	G4double GetCrossTalk(){return m_Cross_Talk;};
+	G4double GetSaturationEnergy(){return m_Saturation_Energy;};
+
+	G4bool GetEFieldBoolean(){return m_efieldfromfile;};
+
+
 
 	///////////////////////////////////////
 	// Set
@@ -276,8 +286,10 @@ public:
 	
 	void SetSaturationEnergy(G4double val){
 		m_Saturation_Energy = val;
-	}			
-	
+	}
+
+	void SetEFieldMap(G4String valS);
+
 	///////////////////////////////////////////////////
 	// operators
 	//void operator=(AllPixGeoDsc &);
@@ -363,8 +375,14 @@ private:
 	G4double m_Chip_Threshold;
 	G4double m_Cross_Talk;
 	G4double m_Saturation_Energy;
-	
-		
+
+	G4String m_EFieldFile;
+
+	vector<vector<vector<G4ThreeVector>>> m_efieldmap;
+	G4int m_efieldmap_nx, m_efieldmap_ny, m_efieldmap_nz;
+
+	G4bool m_efieldfromfile;
+
 
 };
 

@@ -275,6 +275,16 @@ void AllPixDetectorConstruction::SetDetectorID(G4int id){
 	m_nIds++;
 }
 
+void AllPixDetectorConstruction::SetEFieldFile(G4String file){
+	if(m_detId.empty()){
+		_BUILD_MEDIPIX_MSG();
+		exit(1);
+	}
+
+	m_EFieldFiles[*m_detIdItr] = file;
+
+}
+
 void AllPixDetectorConstruction::SetDetectorPosition(G4ThreeVector pos){
 
 	//m_posVector.push_back(pos);
@@ -881,6 +891,14 @@ void AllPixDetectorConstruction::BuildPixelDevices(map<int, AllPixGeoDsc *> geoM
 
 		// Store the hit Collection name in the geometry
 		geoMap[*detItr]->SetHitsCollectionName( aTrackerSD->GetHitsCollectionName() );
+
+
+
+		// Read electric field from file if necessary
+
+		if(m_EFieldFiles.count(*detItr)>0) gD->SetEFieldMap(m_EFieldFiles[(*detItr)]);
+
+
 
 		G4cout << "          detector " << (*detItr) << " ... done" << G4endl;
 
