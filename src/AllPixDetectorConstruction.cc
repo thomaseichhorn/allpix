@@ -328,6 +328,10 @@ void AllPixDetectorConstruction::SetLowTHL(G4double lowTHL){
 	m_lowThlVector.push_back(lowTHL);
 }
 
+void AllPixDetectorConstruction::SetTemperature(G4double temperature){
+	m_temperatures[*m_detIdItr] = temperature;
+}
+
 /**
  * Postition of the test structure.
  * There could be many test structures,
@@ -897,6 +901,13 @@ void AllPixDetectorConstruction::BuildPixelDevices(map<int, AllPixGeoDsc *> geoM
 		// Read electric field from file if necessary
 
 		if(m_EFieldFiles.count(*detItr)>0) gD->SetEFieldMap(m_EFieldFiles[(*detItr)]);
+		
+		if(m_temperatures.count(*detItr)>0)
+		{
+			gD->SetTemperature(m_temperatures[(*detItr)]);
+		}else{
+			gD->SetTemperature(300.);
+		}
 
 
 

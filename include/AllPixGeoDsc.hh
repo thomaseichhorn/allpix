@@ -118,6 +118,7 @@ public:
 	G4double GetThreshold(){return m_Chip_Threshold;};
 	G4double GetCrossTalk(){return m_Cross_Talk;};
 	G4double GetSaturationEnergy(){return m_Saturation_Energy;};
+	G4double GetTemperature(){return m_Temperature;};
 
 	G4ThreeVector GetEFieldFromMap(G4ThreeVector);
 
@@ -262,32 +263,36 @@ public:
 	}
 	void SetMIPTot(G4int val){
 		m_MIP_Tot = val;
-	}	
+	}
 	void SetMIPCharge(G4double val){
 		m_MIP_Charge = val;
-	}	
+	}
 	void SetCounterDepth(G4int val){
 		m_Counter_Depth = val;
-	}	
-	
+	}
+
 	void SetClockUnit(G4double val){
 		m_Clock_Unit = val;
-	}	
-		
+	}
+
 	void SetChipNoise(G4double val){
 		m_Chip_Noise = val;
-	}	
-		
+	}
+
 	void SetThreshold(G4double val){
 		m_Chip_Threshold = val;
-	}	
+	}
 
 	void SetCrossTalk(G4double val){
 		m_Cross_Talk = val;
-	}		
-	
+	}
+
 	void SetSaturationEnergy(G4double val){
 		m_Saturation_Energy = val;
+	}
+	
+	void SetTemperature(G4double val){
+		m_Temperature = val;
 	}
 
 	void SetEFieldMap(G4String valS);
@@ -377,6 +382,7 @@ private:
 	G4double m_Chip_Threshold;
 	G4double m_Cross_Talk;
 	G4double m_Saturation_Energy;
+	G4double m_Temperature;
 
 	G4String m_EFieldFile;
 
