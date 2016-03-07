@@ -908,6 +908,8 @@ void AllPixDetectorConstruction::BuildPixelDevices(map<int, AllPixGeoDsc *> geoM
 		}else{
 			gD->SetTemperature(300.);
 		}
+		
+		gD->SetMagField(m_magField_cartesian);
 
 
 
@@ -984,6 +986,9 @@ void AllPixDetectorConstruction::SetPeakMagField(G4ThreeVector fieldValues)
 	= G4TransportationManager::GetTransportationManager()->GetFieldManager();
 	G4TransportationManager* tmanager = G4TransportationManager::GetTransportationManager();
 	tmanager->GetPropagatorInField()->SetLargestAcceptableStep(1*mm);
+	
+	m_magField_cartesian = fieldValues/tesla;
+	
 	if ( fieldValues[0] != 0. || fieldValues[1] != 0. || fieldValues[2] != 0. )
 	{
 
@@ -991,14 +996,14 @@ void AllPixDetectorConstruction::SetPeakMagField(G4ThreeVector fieldValues)
 		//		m_magField = new MorourgoMagField(fieldValue, 252.5*mm);
 		//		fieldMgr->SetDetectorField(m_magField);
 		//		fieldMgr->CreateChordFinder(m_magField);
-		m_magField = new G4UniformMagField ( fieldValues );
+		m_magField = new G4UniformMagField (fieldValues.getR(), fieldValues.getTheta(), fieldValues.getPhi());
 		fieldMgr->SetDetectorField(m_magField);
 		fieldMgr->CreateChordFinder(m_magField);
 
 		fieldMgr->SetMinimumEpsilonStep( 1e-7 );
 		fieldMgr->SetMaximumEpsilonStep( 1e-6 );
 		fieldMgr->SetDeltaOneStep( 0.05e-3 * mm );  // 0.5 micrometer
-
+		
 
 	} else {
 		m_magField = 0x0;
