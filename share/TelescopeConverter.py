@@ -194,7 +194,7 @@ def convertRun( inputTarFile, outputFileName ):
                 event.addCollection ( DUTSetup, 'DUTSetup' )
 
         # ID encoder info
-        encodingString = 'sensorID:5,sparsePixelType:5'
+        encodingString = 'sensorID:7,sparsePixelType:5'
 
         # Telescope data collection
         trackerDataColl = IMPL.LCCollectionVec( EVENT.LCIO.TRACKERDATA )
@@ -207,6 +207,10 @@ def convertRun( inputTarFile, outputFileName ):
             DUTDataColl = IMPL.LCCollectionVec( EVENT.LCIO.TRACKERDATA )
             idEncoder_DUT = UTIL.CellIDEncoder( IMPL.TrackerDataImpl )( encodingString, DUTDataColl )
 
+            REFDataColl = IMPL.LCCollectionVec( EVENT.LCIO.TRACKERDATA )
+            idEncoder_REF = UTIL.CellIDEncoder( IMPL.TrackerDataImpl )( encodingString, REFDataColl )
+            
+            
             for i,sensorID in enumerate( sorted( DUTData.iterkeys() ) ):
             
                 planeData = IMPL.TrackerDataImpl()
@@ -214,7 +218,7 @@ def convertRun( inputTarFile, outputFileName ):
                 idEncoder_DUT.reset()
                 #idEncoder_DUT['sensorID'] = int( sensorID ) - 500 + 6 # cannot fit 500 in 5 bits!! FIXME
                 idEncoder_DUT['sensorID'] = i+6 # cannot fit 500 in 5 bits!! FIXME
-                idEncoder_DUT['sparsePixelType'] = 1
+                idEncoder_DUT['sparsePixelType'] = 2
                 idEncoder_DUT.setCellID( planeData )
             
                 chargeVec = std.vector(float)()
@@ -222,12 +226,20 @@ def convertRun( inputTarFile, outputFileName ):
                     chargeVec.push_back( val )
                     if val < 0:
                         print 'Negative number in Event %i' % iEvent
-                    
+
                 planeData.setChargeValues( chargeVec )
 
-                DUTDataColl.addElement( planeData )
 
-            event.addCollection( DUTDataColl, 'zsdata_DUT' )
+
+                if int(sensorID) == 900 :
+                    DUTDataColl.addElement( planeData )
+                    event.addCollection( DUTDataColl, 'CMSPixelDUT' )
+                elif int(sensorID) == 901 :
+                    REFDataColl.addElement( planeData )
+                    event.addCollection( REFDataColl, 'CMSPixelREF' )
+                else:
+                    print "Shit. Who am I? sensorID: " + str(int(sensorID))
+
 
         # fill telescope collection
         for sensorID in sorted( telescopeData.iterkeys() ):
@@ -236,7 +248,7 @@ def convertRun( inputTarFile, outputFileName ):
 
             idEncoder_Telescope.reset()
             idEncoder_Telescope['sensorID'] = int( sensorID ) - 300 # cannot fit 300 in 5 bits!! FIXME
-            idEncoder_Telescope['sparsePixelType'] = 1
+            idEncoder_Telescope['sparsePixelType'] = 2
             idEncoder_Telescope.setCellID( planeData )
             
             # loop over hits
