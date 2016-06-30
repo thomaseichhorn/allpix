@@ -67,8 +67,6 @@ public:
   //void RecordHitsForROOTFiles(const G4Event* evt); //Record the MC hits to save in the ROOT file
   //void RecordHitsForROOTFiles_withChargeSharing(const G4Event* evt); // Hits with charge sharing values
   void RecordDigits_all(const G4Event* evt);
-  
-  void GetEUTelescopeEvent(G4int runnr, const G4Run* aRun);
 
 
 private:
