@@ -92,6 +92,8 @@ void AllPixGeoDsc::SetEFieldMap(G4String valS){
 
 		efieldinput.close();
 
+		cout << "EField read from " << m_EFieldFile << ". Points (x,y,z): " << nptsx << ", " << nptsy << ", " << nptsz << endl;
+
 	}else{
 		if(!valS.isNull())
 		{
@@ -156,10 +158,14 @@ G4ThreeVector AllPixGeoDsc::GetEFieldFromMap(G4ThreeVector ppos){
 	G4double pixsize_x = GetPixelX();
 	G4double pixsize_y = GetPixelY();
 	G4double pixsize_z = GetPixelZ();
+
 	
 	// ppos is the position in mm inside one pixel cell
 	
 	ppos = G4ThreeVector(fmod2(ppos[0],pixsize_x), fmod2(ppos[1],pixsize_y), ppos[2]);
+
+	// In order not to check on values outside the pixel:
+	if(ppos[2] > pixsize_z) ppos[2] = pixsize_z-0.0001;
 	
 	// Assuming that point 1 and nx are basically at the same position. The "-1" takes account of the efieldmap starting at the iterator 1.
 	// Get the position iside the grid
