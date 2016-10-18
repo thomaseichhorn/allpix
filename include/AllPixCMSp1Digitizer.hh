@@ -74,6 +74,8 @@ private:
   G4double gaussNoise;
   G4double thresholdSmear;
   G4double ADCSmear;
+
+  G4bool skipPropagation;
   
   G4double *gaincalParameters;
 

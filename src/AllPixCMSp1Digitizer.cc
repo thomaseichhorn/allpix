@@ -131,7 +131,11 @@ void AllPixCMSp1Digitizer::InitVariables(){
 	}else{
 		Electron_Trap_TauEff = Electron_Trap_TauNoFluence;
 	}
-	
+
+	if(skipPropagation = gD->GetSkipPropagation()){
+	  G4cout << "--------- Skipping Propagation for detID " << gD->GetID() << ". Use created charge instead!" << G4endl;
+	}
+
 }
 
 inline G4int AllPixCMSp1Digitizer::ADC(const G4double digital){
@@ -181,33 +185,39 @@ void AllPixCMSp1Digitizer::Digitize(){
 		tempPixel.first  = (*hitsCollection)[itr]->GetPixelNbX();
 		tempPixel.second = (*hitsCollection)[itr]->GetPixelNbY();
 
-		// Loop over all electrons (do (Electron_Scaling) electrons in one step)
-		createdElectronsRemaining = createdElectronsStep;
-		while(createdElectronsRemaining > 0.){
+		if(skipPropagation){
+		  pixelsContent[tempPixel] += createdElectronsStep;
+		}else{
+		
+		  // Loop over all electrons (do (Electron_Scaling) electrons in one step)
+		  createdElectronsRemaining = createdElectronsStep;
+		  while(createdElectronsRemaining > 0.){
 			
-			// Define number of electrons to be propagated and remove electrons of this step from the total
-			if(Electron_Scaling > createdElectronsRemaining){
-				nElectrons = createdElectronsRemaining;
-			}else{
-				nElectrons = Electron_Scaling;
-			}
+		    // Define number of electrons to be propagated and remove electrons of this step from the total
+		    if(Electron_Scaling > createdElectronsRemaining){
+		      nElectrons = createdElectronsRemaining;
+		    }else{
+		      nElectrons = Electron_Scaling;
+		    }
 			
-			createdElectronsRemaining -= nElectrons;
+		    createdElectronsRemaining -= nElectrons;
 			
-			// Get Position and propagate through sensor
-			position = (*hitsCollection)[itr]->GetPos(); // This is in a global frame!!!!!!!!!!!!
+		    // Get Position and propagate through sensor
+		    position = (*hitsCollection)[itr]->GetPos(); // This is in a global frame!!!!!!!!!!!!
 			
-			position = (*hitsCollection)[itr]->GetPosInLocalReferenceFrame();
-			position[2] += detectorThickness/2.;
+		    position = (*hitsCollection)[itr]->GetPosInLocalReferenceFrame();
+		    position[2] += detectorThickness/2.;
 			
-			// G4cout << position << G4endl;
-			Propagation(position, drifttime, chargeTrapped);
-			endPixel.first = floor((position.x()+SensorHalfSizeX)/PixelSizeX);
-			endPixel.second = floor((position.y()+SensorHalfSizeY)/PixelSizeY);
+		    // G4cout << position << G4endl;
+		    Propagation(position, drifttime, chargeTrapped);
+		    endPixel.first = floor((position.x()+SensorHalfSizeX)/PixelSizeX);
+		    endPixel.second = floor((position.y()+SensorHalfSizeY)/PixelSizeY);
 			
-			if(!chargeTrapped) pixelsContent[endPixel] += nElectrons;
+		    if(!chargeTrapped) pixelsContent[endPixel] += nElectrons;
 			
-		} // splitted electrons
+		  } // splitted electrons
+
+		}
 		
 	} // Charge collection
 	
