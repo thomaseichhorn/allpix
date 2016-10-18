@@ -31,6 +31,8 @@ public:
     AllPixGeoDsc();
     ~AllPixGeoDsc();
 
+    G4int GetID(){return m_ID;};
+  
     //  Number of pixels
     G4int GetNPixelsX(){return m_npix_x;};
     G4int GetNPixelsY(){return m_npix_y;};
@@ -147,6 +149,7 @@ public:
     G4double GetSaturationEnergy(){return m_Saturation_Energy;}
     G4double GetTemperature(){return m_Temperature;};
     G4double GetFlux(){return m_Flux;};
+    G4bool GetSkipPropagation(){return m_SkipPropagation;};
     G4ThreeVector GetMagField(){return m_MagField;};
 
     G4ThreeVector GetEFieldFromMap(G4ThreeVector);
@@ -337,6 +340,11 @@ public:
 	m_Flux = val;
     }
 
+    void SetSkipPropagation(G4int val){
+      if(val) m_SkipPropagation=true;
+      else m_SkipPropagation=false;
+    }
+
     void SetMagField(G4ThreeVector vals){
 	m_MagField = vals;
     }
@@ -435,6 +443,7 @@ private:
     G4double m_Saturation_Energy;
     G4double m_Temperature;
     G4double m_Flux;
+    G4bool m_SkipPropagation;
     G4ThreeVector m_MagField;
 
 	G4String m_EFieldFile;

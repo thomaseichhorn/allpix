@@ -87,7 +87,8 @@ private:
   G4UIcmdWithADoubleAndUnit * m_StepLengthSensor;
   G4UIcmdWithADouble * m_TempCmd;
   G4UIcmdWithADouble * m_FluxCmd;
-
+  G4UIcmdWithAnInteger * m_skipPropagationCmd;
+  
   G4UIcmdWithoutParameter   * m_UpdateCmd;
 
 #ifdef _EUTELESCOPE

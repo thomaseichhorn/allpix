@@ -114,6 +114,7 @@ public:
 	void SetLowTHL(G4double);
 	void SetTemperature(G4double);
 	void SetFlux(G4double);
+	void SetSkipPropagation(G4int);
 	void UpdateGeometry();
 
   // others
@@ -154,6 +155,7 @@ private:
 	vector<G4double>           m_lowThlVector; // lowTHL
 	map<int, G4double>	m_temperatures;
 	map<int, G4double>	m_fluxes;
+        map<int, G4int>         m_skipPropagations;
 	// for user information.  Absolute position (center) of the Si wafers
 	vector<G4ThreeVector>      m_absolutePosSiWafer;
 

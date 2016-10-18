@@ -137,6 +137,11 @@ AllPixDetectorMessenger::AllPixDetectorMessenger(
 	m_FluxCmd->SetParameterName("flux", true, false);
 	m_FluxCmd->AvailableForStates(G4State_PreInit, G4State_Idle);
 
+	m_skipPropagationCmd = new G4UIcmdWithAnInteger("/allpix/det/skipPropagation", this);
+	m_skipPropagationCmd->SetGuidance("Use created charge instead of propagation (1-true, 0-false");
+	m_skipPropagationCmd->SetParameterName("propagation", true);
+	m_skipPropagationCmd->AvailableForStates(G4State_PreInit, G4State_Idle);	
+
 	m_ClockCmd = new G4UIcmdWithADoubleAndUnit("/allpix/det/setClock",this);
 	m_ClockCmd->SetGuidance("The clock.");
 	m_ClockCmd->SetParameterName("Clock", false, false);
@@ -313,6 +318,12 @@ void AllPixDetectorMessenger::SetNewValue(G4UIcommand* command, G4String newValu
 	{
 		m_AllPixDetector->SetFlux(
 				m_FluxCmd->GetNewDoubleValue(newValue)
+		);
+	}
+	if( command == m_skipPropagationCmd )
+	{
+		m_AllPixDetector->SetSkipPropagation(
+				m_skipPropagationCmd->GetNewIntValue(newValue)
 		);
 	}
 	

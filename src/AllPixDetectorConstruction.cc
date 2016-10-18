@@ -350,6 +350,10 @@ void AllPixDetectorConstruction::SetFlux(G4double flux){
 	m_fluxes[*m_detIdItr] = flux;
 }
 
+void AllPixDetectorConstruction::SetSkipPropagation(G4int skipPropagation){
+  m_skipPropagations[*m_detIdItr] = skipPropagation;
+}
+
 /**
  * Postition of the test structure.
  * There could be many test structures,
@@ -1057,6 +1061,8 @@ void AllPixDetectorConstruction::BuildPixelDevices(map<int, AllPixGeoDsc *> geoM
 			geoMap[*detItr]->SetTemperature(300.);
 		}
 		geoMap[*detItr]->SetFlux(m_fluxes[(*detItr)]);
+
+		geoMap[*detItr]->SetSkipPropagation(m_skipPropagations[(*detItr)]);
 		
 		geoMap[*detItr]->SetMagField(m_magField_cartesian);
 
