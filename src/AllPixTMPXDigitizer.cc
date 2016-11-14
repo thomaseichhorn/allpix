@@ -187,28 +187,28 @@ void AllPixTMPXDigitizer::Digitize()
 	}
     }
 
-  // // ------------ Capacitive coupling ------------ //
-  // pair<G4int, G4int> extraPixel;
-  // extraPixel = tempPixel;
-  // G4double coupling_percentage=0.05;//TMath::Abs(CLHEP::RandGauss::shoot(0.05, 0.05));
-  // G4double couplingEnergy=coupling_percentage*(G4double)pixelsContent[tempPixel];
-  // G4cout << "couplingEnergy=" << couplingEnergy << G4endl;
+   // ------------ Capacitive coupling ------------ //
+   pair<G4int, G4int> extraPixel;
+   extraPixel = tempPixel;
+   G4double coupling_percentage=0.05;//TMath::Abs(CLHEP::RandGauss::shoot(0.05, 0.05));
+   G4double couplingEnergy=coupling_percentage*(G4double)pixelsContent[tempPixel];
+   G4cout << "couplingEnergy=" << couplingEnergy << G4endl;
 
-  // pixelsContent[tempPixel]-=couplingEnergy;
-  // for(int i=-1; i<=1; i++)
-  //   {
-  //     for(int j=-1; j<=1; j++)
-  // 	{
-  // 	  if(i!=0 && j!=0 && i*j==0)
-  // 	    {
-  // 	      extraPixel=tempPixel;
-  // 	      extraPixel.first +=i;
-  // 	      extraPixel.second+=j;
-  // 	      pixelsContent[extraPixel]+=couplingEnergy/4.0;
-  // 	    }
-  // 	}
-  //   }
-  // // ------------ End capacitive coupling ------------ //
+   pixelsContent[tempPixel]-=couplingEnergy;
+   for(int i=-1; i<=1; i++)
+     {
+       for(int j=-1; j<=1; j++)
+   	{
+   	  if(i!=0 && j!=0 && i*j==0)
+   	    {
+   	      extraPixel=tempPixel;
+   	      extraPixel.first +=i;
+   	      extraPixel.second+=j;
+   	      pixelsContent[extraPixel]+=couplingEnergy/4.0;
+   	    }
+   	}
+     }
+   // ------------ End capacitive coupling ------------ //
  
 
   //------------------ RECORD DIGITS ------------------//
@@ -216,14 +216,14 @@ void AllPixTMPXDigitizer::Digitize()
   map<pair<G4int, G4int>, G4double >::iterator pCItr = pixelsContent.begin();
   for( ; pCItr != pixelsContent.end() ; pCItr++)
     {
-      // Double_t threshold=CLHEP::RandGauss::shoot(m_digitIn.thl, 35); // ~35 electrons noise on the threshold
+       Double_t threshold=CLHEP::RandGauss::shoot(m_digitIn.thl, 35); // ~35 electrons noise on the threshold
       // Double_t threshold=m_digitIn.thl;
-      Double_t threshold=3.836+CLHEP::RandGauss::shoot(0, 0.057);
+      //Double_t threshold=3.836+CLHEP::RandGauss::shoot(0, 0.057);
       // G4cout << "threshold=" << threshold << G4endl;
       // G4cout << "energy=" << ((*pCItr).second)/keV << " [keV]" << G4endl;
       // //--- Electronic noise ---//
-      // Double_t electronic_noise=elec*CLHEP::RandGauss::shoot(0, 200)/MeV;  //200 electrons electronic noise
-      // ((*pCItr).second)+=electronic_noise;
+       Double_t electronic_noise=elec*CLHEP::RandGauss::shoot(0, 200)/MeV;  //200 electrons electronic noise
+       ((*pCItr).second)+=electronic_noise;
 
       // // // TOT noise
       // // ((*pCItr).second)=CLHEP::RandGauss::shoot(((*pCItr).second), 5.0/100.0*((*pCItr).second)); //?????

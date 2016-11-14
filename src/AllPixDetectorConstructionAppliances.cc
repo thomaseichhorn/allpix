@@ -178,6 +178,82 @@ void AllPixDetectorConstruction::BuildAppliances(int){
 		}
 		break;
 	}
+	
+	case 99 :
+	{
+		int detId = 350;
+	
+		G4cout << "Building Alibava box" << G4endl ;
+
+		// materials
+		G4NistManager* nistman = G4NistManager::Instance();
+		G4Material * kaptonmaterial = nistman->FindOrBuildMaterial("G4_KAPTON");
+
+		// create the armaflex material
+		G4double z, a, fractionmass, density;
+		G4String name, symbol;
+		G4int ncomponents;
+
+		a = 28.09*g/mole;
+		G4Element* elSi  = new G4Element(name="Silicon",symbol="Si" , z= 14., a);
+
+		a = 16.00*g/mole;
+		G4Element* elO  = new G4Element(name="Oxygen"  ,symbol="O" , z= 8., a);
+
+		a = 1.01*g/mole;
+		G4Element* elH  = new G4Element(name="Hydrogen"  ,symbol="H" , z= 1., a);
+
+		a = 12.01*g/mole;
+		G4Element* elC  = new G4Element(name="Carbon"  ,symbol="C" , z= 6., a);
+
+		density = 85.629*mg/cm3;
+		G4Material* armaflexmaterial = new G4Material(name="Armaflex",density,ncomponents=4);
+		armaflexmaterial->AddElement(elSi, fractionmass=37.9*perCent);
+		armaflexmaterial->AddElement(elO, fractionmass=21.6*perCent);
+		armaflexmaterial->AddElement(elH, fractionmass=8.2*perCent);
+		armaflexmaterial->AddElement(elC, fractionmass=32.4*perCent);
+
+		// sizes in mm
+		G4double kapthick = 0.1;
+		G4double armathick = 5.0;
+		G4double innerdim = 25.0;
+
+		// first create the outer kapton box
+		G4Box *kaptonbox=new G4Box("KaptonBox",(2.0*innerdim+armathick+kapthick)*mm,(3.0*innerdim+armathick+kapthick)*mm,(innerdim+armathick+kapthick)*mm);
+
+		// then the armaflex box
+		G4Box *armabox=new G4Box("ArmaBox",(2.0*innerdim+armathick)*mm,(3.0*innerdim+armathick)*mm,(innerdim+armathick)*mm);
+
+		// remove the armaflex box volume from the kaptonbox volume
+		G4SubtractionSolid *outerbox = new G4SubtractionSolid("KaptonBox-ArmaBox",kaptonbox,armabox);
+
+		// the empty inner box to be removed from the armaflex box
+		G4Box *inside=new G4Box("InnerBox",(2.0*innerdim)*mm,(3.0*innerdim)*mm,(innerdim)*mm);
+
+		G4SubtractionSolid *innerbox = new G4SubtractionSolid("OuterBox-InnerBox",outerbox,inside);
+
+		m_TestStructure_log = new G4LogicalVolume(outerbox,kaptonmaterial,"outerbox",0,0,0);
+		G4VisAttributes * kapvis = new G4VisAttributes(G4Color(1,1,1,0.5));
+		kapvis->SetLineWidth(1);
+		kapvis->SetForceSolid(true);
+		m_TestStructure_log->SetVisAttributes(kapvis);
+		G4VisAttributes * armavis = new G4VisAttributes(G4Color(1,1,1,0.5));
+		armavis->SetLineWidth(1);
+		armavis->SetForceSolid(true);
+		m_TestStructure_log->SetVisAttributes(armavis);
+
+		m_TestStructure_log = new G4LogicalVolume(innerbox,armaflexmaterial,"innerbox",0,0,0);
+
+		m_TestStructure_phys = new G4PVPlacement(0,G4ThreeVector(0,0,0),m_TestStructure_log,"ali_phys",m_wrapper_log[detId],false,0,true);
+
+		G4cout << "Done Building Alibava box! Materials used:" << G4endl ;
+
+		G4cout << armaflexmaterial << G4endl;
+
+		G4cout << kaptonmaterial << G4endl;
+
+	}
+
 	default:
 	{
 		G4cout << "Unknown Appliance Type" << G4endl;

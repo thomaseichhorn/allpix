@@ -22,6 +22,10 @@
 #include "AllPixEdepHistogrammerDigitizer.hh"
 // Included by newdigitizer.sh script --> CMSp1
 #include "AllPixCMSp1Digitizer.hh"
+// Included by newdigitizer.sh script --> testalibava
+#include "AllPixtestalibavaDigitizer.hh"
+// Included by newdigitizer.sh script --> Alibava
+#include "AllPixAlibavaDigitizer.hh"
 // __endofheader__
 
 // geometry
@@ -165,6 +169,26 @@ else if (digitizerName == "CMSp1") {
 			cout << "    Setting up a " << digitizerName << " digitizer for det : " << detectorId << endl;
 		}
 
+// Included by newdigitizer.sh script --> testalibava
+else if (digitizerName == "testalibava") {
+			AllPixtestalibavaDigitizer * dp = new AllPixtestalibavaDigitizer(digitizerModulesNames[itr] , hcName, digitColectionName);
+			dmPtr = static_cast<AllPixDigitizerInterface *> (dp);
+			cout << "    Setting up a " << digitizerName << " digitizer for det : " << detectorId << endl;
+		}
+		
+else if (digitizerName == "TMPX") {
+			AllPixtestalibavaDigitizer * dp = new AllPixtestalibavaDigitizer(digitizerModulesNames[itr] , hcName, digitColectionName);
+			dmPtr = static_cast<AllPixDigitizerInterface *> (dp);
+			cout << "    Setting up a " << digitizerName << " digitizer for det : " << detectorId << endl;
+		}
+ 
+// Included by newdigitizer.sh script --> Alibava
+else if (digitizerName == "Alibava") {
+			AllPixAlibavaDigitizer * dp = new AllPixAlibavaDigitizer(digitizerModulesNames[itr] , hcName, digitColectionName);
+			dmPtr = static_cast<AllPixDigitizerInterface *> (dp);
+			cout << "    Setting up a " << digitizerName << " digitizer for det : " << detectorId << endl;
+		}
+ 
         // __endofdigitlist__
    	    else {
 			G4cout << "    can't find digitizer with name : " << digitizerName << G4endl;

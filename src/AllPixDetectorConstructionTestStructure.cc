@@ -881,6 +881,8 @@ void AllPixDetectorConstruction::BuildTestStructure(int){
 				0);
 	
 	}
+	
+
 
 	default:
 	{
