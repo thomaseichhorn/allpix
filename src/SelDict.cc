@@ -6,7 +6,6 @@
 #include <stddef.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <math.h>
 #include <string.h>
 #include <assert.h>
 #define G__DICTIONARY
@@ -46,31 +45,91 @@ namespace std {} using namespace std;
 // Header files passed via #pragma extra_include
 
 namespace ROOT {
-   static void delete_FrameStruct(void *p);
-   static void deleteArray_FrameStruct(void *p);
-   static void destruct_FrameStruct(void *p);
+   static void *new_SimpleHits(void *p = 0);
+   static void *newArray_SimpleHits(Long_t size, void *p);
+   static void delete_SimpleHits(void *p);
+   static void deleteArray_SimpleHits(void *p);
+   static void destruct_SimpleHits(void *p);
 
    // Function generating the singleton type initializer
-   static TGenericClassInfo *GenerateInitInstanceLocal(const ::FrameStruct*)
+   static TGenericClassInfo *GenerateInitInstanceLocal(const ::SimpleHits*)
    {
-      ::FrameStruct *ptr = 0;
-      static ::TVirtualIsAProxy* isa_proxy = new ::TInstrumentedIsAProxy< ::FrameStruct >(0);
+      ::SimpleHits *ptr = 0;
+      static ::TVirtualIsAProxy* isa_proxy = new ::TInstrumentedIsAProxy< ::SimpleHits >(0);
       static ::ROOT::TGenericClassInfo 
-         instance("FrameStruct", ::FrameStruct::Class_Version(), "allpix_dm.h", 83,
-                  typeid(::FrameStruct), ::ROOT::Internal::DefineBehavior(ptr, ptr),
-                  &::FrameStruct::Dictionary, isa_proxy, 4,
-                  sizeof(::FrameStruct) );
-      instance.SetDelete(&delete_FrameStruct);
-      instance.SetDeleteArray(&deleteArray_FrameStruct);
-      instance.SetDestructor(&destruct_FrameStruct);
+         instance("SimpleHits", ::SimpleHits::Class_Version(), "AllPix_Hits_WriteToEntuple.h", 33,
+                  typeid(::SimpleHits), ::ROOT::Internal::DefineBehavior(ptr, ptr),
+                  &::SimpleHits::Dictionary, isa_proxy, 4,
+                  sizeof(::SimpleHits) );
+      instance.SetNew(&new_SimpleHits);
+      instance.SetNewArray(&newArray_SimpleHits);
+      instance.SetDelete(&delete_SimpleHits);
+      instance.SetDeleteArray(&deleteArray_SimpleHits);
+      instance.SetDestructor(&destruct_SimpleHits);
       return &instance;
    }
-   TGenericClassInfo *GenerateInitInstance(const ::FrameStruct*)
+   TGenericClassInfo *GenerateInitInstance(const ::SimpleHits*)
    {
-      return GenerateInitInstanceLocal((::FrameStruct*)0);
+      return GenerateInitInstanceLocal((::SimpleHits*)0);
    }
    // Static variable to force the class initialization
-   static ::ROOT::TGenericClassInfo *_R__UNIQUE_(Init) = GenerateInitInstanceLocal((const ::FrameStruct*)0x0); R__UseDummy(_R__UNIQUE_(Init));
+   static ::ROOT::TGenericClassInfo *_R__UNIQUE_(Init) = GenerateInitInstanceLocal((const ::SimpleHits*)0x0); R__UseDummy(_R__UNIQUE_(Init));
+} // end of namespace ROOT
+
+namespace ROOT {
+   static void delete_WriteToNtuple(void *p);
+   static void deleteArray_WriteToNtuple(void *p);
+   static void destruct_WriteToNtuple(void *p);
+
+   // Function generating the singleton type initializer
+   static TGenericClassInfo *GenerateInitInstanceLocal(const ::WriteToNtuple*)
+   {
+      ::WriteToNtuple *ptr = 0;
+      static ::TVirtualIsAProxy* isa_proxy = new ::TInstrumentedIsAProxy< ::WriteToNtuple >(0);
+      static ::ROOT::TGenericClassInfo 
+         instance("WriteToNtuple", ::WriteToNtuple::Class_Version(), "AllPix_Frames_WriteToEntuple.h", 33,
+                  typeid(::WriteToNtuple), ::ROOT::Internal::DefineBehavior(ptr, ptr),
+                  &::WriteToNtuple::Dictionary, isa_proxy, 4,
+                  sizeof(::WriteToNtuple) );
+      instance.SetDelete(&delete_WriteToNtuple);
+      instance.SetDeleteArray(&deleteArray_WriteToNtuple);
+      instance.SetDestructor(&destruct_WriteToNtuple);
+      return &instance;
+   }
+   TGenericClassInfo *GenerateInitInstance(const ::WriteToNtuple*)
+   {
+      return GenerateInitInstanceLocal((::WriteToNtuple*)0);
+   }
+   // Static variable to force the class initialization
+   static ::ROOT::TGenericClassInfo *_R__UNIQUE_(Init) = GenerateInitInstanceLocal((const ::WriteToNtuple*)0x0); R__UseDummy(_R__UNIQUE_(Init));
+} // end of namespace ROOT
+
+namespace ROOT {
+   static void delete_AllPixDigitAnimation(void *p);
+   static void deleteArray_AllPixDigitAnimation(void *p);
+   static void destruct_AllPixDigitAnimation(void *p);
+
+   // Function generating the singleton type initializer
+   static TGenericClassInfo *GenerateInitInstanceLocal(const ::AllPixDigitAnimation*)
+   {
+      ::AllPixDigitAnimation *ptr = 0;
+      static ::TVirtualIsAProxy* isa_proxy = new ::TInstrumentedIsAProxy< ::AllPixDigitAnimation >(0);
+      static ::ROOT::TGenericClassInfo 
+         instance("AllPixDigitAnimation", ::AllPixDigitAnimation::Class_Version(), "AllPixDigitAnimation.hh", 28,
+                  typeid(::AllPixDigitAnimation), ::ROOT::Internal::DefineBehavior(ptr, ptr),
+                  &::AllPixDigitAnimation::Dictionary, isa_proxy, 4,
+                  sizeof(::AllPixDigitAnimation) );
+      instance.SetDelete(&delete_AllPixDigitAnimation);
+      instance.SetDeleteArray(&deleteArray_AllPixDigitAnimation);
+      instance.SetDestructor(&destruct_AllPixDigitAnimation);
+      return &instance;
+   }
+   TGenericClassInfo *GenerateInitInstance(const ::AllPixDigitAnimation*)
+   {
+      return GenerateInitInstanceLocal((::AllPixDigitAnimation*)0);
+   }
+   // Static variable to force the class initialization
+   static ::ROOT::TGenericClassInfo *_R__UNIQUE_(Init) = GenerateInitInstanceLocal((const ::AllPixDigitAnimation*)0x0); R__UseDummy(_R__UNIQUE_(Init));
 } // end of namespace ROOT
 
 namespace ROOT {
@@ -106,160 +165,65 @@ namespace ROOT {
 } // end of namespace ROOT
 
 namespace ROOT {
-   static void delete_WriteToNtuple(void *p);
-   static void deleteArray_WriteToNtuple(void *p);
-   static void destruct_WriteToNtuple(void *p);
+   static void delete_FrameStruct(void *p);
+   static void deleteArray_FrameStruct(void *p);
+   static void destruct_FrameStruct(void *p);
 
    // Function generating the singleton type initializer
-   static TGenericClassInfo *GenerateInitInstanceLocal(const ::WriteToNtuple*)
+   static TGenericClassInfo *GenerateInitInstanceLocal(const ::FrameStruct*)
    {
-      ::WriteToNtuple *ptr = 0;
-      static ::TVirtualIsAProxy* isa_proxy = new ::TInstrumentedIsAProxy< ::WriteToNtuple >(0);
+      ::FrameStruct *ptr = 0;
+      static ::TVirtualIsAProxy* isa_proxy = new ::TInstrumentedIsAProxy< ::FrameStruct >(0);
       static ::ROOT::TGenericClassInfo 
-         instance("WriteToNtuple", ::WriteToNtuple::Class_Version(), "AllPix_Frames_WriteToEntuple.h", 33,
-                  typeid(::WriteToNtuple), ::ROOT::Internal::DefineBehavior(ptr, ptr),
-                  &::WriteToNtuple::Dictionary, isa_proxy, 4,
-                  sizeof(::WriteToNtuple) );
-      instance.SetDelete(&delete_WriteToNtuple);
-      instance.SetDeleteArray(&deleteArray_WriteToNtuple);
-      instance.SetDestructor(&destruct_WriteToNtuple);
+         instance("FrameStruct", ::FrameStruct::Class_Version(), "allpix_dm.h", 83,
+                  typeid(::FrameStruct), ::ROOT::Internal::DefineBehavior(ptr, ptr),
+                  &::FrameStruct::Dictionary, isa_proxy, 4,
+                  sizeof(::FrameStruct) );
+      instance.SetDelete(&delete_FrameStruct);
+      instance.SetDeleteArray(&deleteArray_FrameStruct);
+      instance.SetDestructor(&destruct_FrameStruct);
       return &instance;
    }
-   TGenericClassInfo *GenerateInitInstance(const ::WriteToNtuple*)
+   TGenericClassInfo *GenerateInitInstance(const ::FrameStruct*)
    {
-      return GenerateInitInstanceLocal((::WriteToNtuple*)0);
+      return GenerateInitInstanceLocal((::FrameStruct*)0);
    }
    // Static variable to force the class initialization
-   static ::ROOT::TGenericClassInfo *_R__UNIQUE_(Init) = GenerateInitInstanceLocal((const ::WriteToNtuple*)0x0); R__UseDummy(_R__UNIQUE_(Init));
-} // end of namespace ROOT
-
-namespace ROOT {
-   static void *new_SimpleHits(void *p = 0);
-   static void *newArray_SimpleHits(Long_t size, void *p);
-   static void delete_SimpleHits(void *p);
-   static void deleteArray_SimpleHits(void *p);
-   static void destruct_SimpleHits(void *p);
-
-   // Function generating the singleton type initializer
-   static TGenericClassInfo *GenerateInitInstanceLocal(const ::SimpleHits*)
-   {
-      ::SimpleHits *ptr = 0;
-      static ::TVirtualIsAProxy* isa_proxy = new ::TInstrumentedIsAProxy< ::SimpleHits >(0);
-      static ::ROOT::TGenericClassInfo 
-         instance("SimpleHits", ::SimpleHits::Class_Version(), "AllPix_Hits_WriteToEntuple.h", 33,
-                  typeid(::SimpleHits), ::ROOT::Internal::DefineBehavior(ptr, ptr),
-                  &::SimpleHits::Dictionary, isa_proxy, 4,
-                  sizeof(::SimpleHits) );
-      instance.SetNew(&new_SimpleHits);
-      instance.SetNewArray(&newArray_SimpleHits);
-      instance.SetDelete(&delete_SimpleHits);
-      instance.SetDeleteArray(&deleteArray_SimpleHits);
-      instance.SetDestructor(&destruct_SimpleHits);
-      return &instance;
-   }
-   TGenericClassInfo *GenerateInitInstance(const ::SimpleHits*)
-   {
-      return GenerateInitInstanceLocal((::SimpleHits*)0);
-   }
-   // Static variable to force the class initialization
-   static ::ROOT::TGenericClassInfo *_R__UNIQUE_(Init) = GenerateInitInstanceLocal((const ::SimpleHits*)0x0); R__UseDummy(_R__UNIQUE_(Init));
-} // end of namespace ROOT
-
-namespace ROOT {
-   static void delete_AllPixDigitAnimation(void *p);
-   static void deleteArray_AllPixDigitAnimation(void *p);
-   static void destruct_AllPixDigitAnimation(void *p);
-
-   // Function generating the singleton type initializer
-   static TGenericClassInfo *GenerateInitInstanceLocal(const ::AllPixDigitAnimation*)
-   {
-      ::AllPixDigitAnimation *ptr = 0;
-      static ::TVirtualIsAProxy* isa_proxy = new ::TInstrumentedIsAProxy< ::AllPixDigitAnimation >(0);
-      static ::ROOT::TGenericClassInfo 
-         instance("AllPixDigitAnimation", ::AllPixDigitAnimation::Class_Version(), "AllPixDigitAnimation.hh", 28,
-                  typeid(::AllPixDigitAnimation), ::ROOT::Internal::DefineBehavior(ptr, ptr),
-                  &::AllPixDigitAnimation::Dictionary, isa_proxy, 4,
-                  sizeof(::AllPixDigitAnimation) );
-      instance.SetDelete(&delete_AllPixDigitAnimation);
-      instance.SetDeleteArray(&deleteArray_AllPixDigitAnimation);
-      instance.SetDestructor(&destruct_AllPixDigitAnimation);
-      return &instance;
-   }
-   TGenericClassInfo *GenerateInitInstance(const ::AllPixDigitAnimation*)
-   {
-      return GenerateInitInstanceLocal((::AllPixDigitAnimation*)0);
-   }
-   // Static variable to force the class initialization
-   static ::ROOT::TGenericClassInfo *_R__UNIQUE_(Init) = GenerateInitInstanceLocal((const ::AllPixDigitAnimation*)0x0); R__UseDummy(_R__UNIQUE_(Init));
+   static ::ROOT::TGenericClassInfo *_R__UNIQUE_(Init) = GenerateInitInstanceLocal((const ::FrameStruct*)0x0); R__UseDummy(_R__UNIQUE_(Init));
 } // end of namespace ROOT
 
 //______________________________________________________________________________
-atomic_TClass_ptr FrameStruct::fgIsA(0);  // static to hold class pointer
+atomic_TClass_ptr SimpleHits::fgIsA(0);  // static to hold class pointer
 
 //______________________________________________________________________________
-const char *FrameStruct::Class_Name()
+const char *SimpleHits::Class_Name()
 {
-   return "FrameStruct";
+   return "SimpleHits";
 }
 
 //______________________________________________________________________________
-const char *FrameStruct::ImplFileName()
+const char *SimpleHits::ImplFileName()
 {
-   return ::ROOT::GenerateInitInstanceLocal((const ::FrameStruct*)0x0)->GetImplFileName();
+   return ::ROOT::GenerateInitInstanceLocal((const ::SimpleHits*)0x0)->GetImplFileName();
 }
 
 //______________________________________________________________________________
-int FrameStruct::ImplFileLine()
+int SimpleHits::ImplFileLine()
 {
-   return ::ROOT::GenerateInitInstanceLocal((const ::FrameStruct*)0x0)->GetImplFileLine();
+   return ::ROOT::GenerateInitInstanceLocal((const ::SimpleHits*)0x0)->GetImplFileLine();
 }
 
 //______________________________________________________________________________
-TClass *FrameStruct::Dictionary()
+TClass *SimpleHits::Dictionary()
 {
-   fgIsA = ::ROOT::GenerateInitInstanceLocal((const ::FrameStruct*)0x0)->GetClass();
+   fgIsA = ::ROOT::GenerateInitInstanceLocal((const ::SimpleHits*)0x0)->GetClass();
    return fgIsA;
 }
 
 //______________________________________________________________________________
-TClass *FrameStruct::Class()
+TClass *SimpleHits::Class()
 {
-   if (!fgIsA.load()) { R__LOCKGUARD2(gInterpreterMutex); fgIsA = ::ROOT::GenerateInitInstanceLocal((const ::FrameStruct*)0x0)->GetClass(); }
-   return fgIsA;
-}
-
-//______________________________________________________________________________
-atomic_TClass_ptr FrameContainer::fgIsA(0);  // static to hold class pointer
-
-//______________________________________________________________________________
-const char *FrameContainer::Class_Name()
-{
-   return "FrameContainer";
-}
-
-//______________________________________________________________________________
-const char *FrameContainer::ImplFileName()
-{
-   return ::ROOT::GenerateInitInstanceLocal((const ::FrameContainer*)0x0)->GetImplFileName();
-}
-
-//______________________________________________________________________________
-int FrameContainer::ImplFileLine()
-{
-   return ::ROOT::GenerateInitInstanceLocal((const ::FrameContainer*)0x0)->GetImplFileLine();
-}
-
-//______________________________________________________________________________
-TClass *FrameContainer::Dictionary()
-{
-   fgIsA = ::ROOT::GenerateInitInstanceLocal((const ::FrameContainer*)0x0)->GetClass();
-   return fgIsA;
-}
-
-//______________________________________________________________________________
-TClass *FrameContainer::Class()
-{
-   if (!fgIsA.load()) { R__LOCKGUARD2(gInterpreterMutex); fgIsA = ::ROOT::GenerateInitInstanceLocal((const ::FrameContainer*)0x0)->GetClass(); }
+   if (!fgIsA.load()) { R__LOCKGUARD2(gInterpreterMutex); fgIsA = ::ROOT::GenerateInitInstanceLocal((const ::SimpleHits*)0x0)->GetClass(); }
    return fgIsA;
 }
 
@@ -299,41 +263,6 @@ TClass *WriteToNtuple::Class()
 }
 
 //______________________________________________________________________________
-atomic_TClass_ptr SimpleHits::fgIsA(0);  // static to hold class pointer
-
-//______________________________________________________________________________
-const char *SimpleHits::Class_Name()
-{
-   return "SimpleHits";
-}
-
-//______________________________________________________________________________
-const char *SimpleHits::ImplFileName()
-{
-   return ::ROOT::GenerateInitInstanceLocal((const ::SimpleHits*)0x0)->GetImplFileName();
-}
-
-//______________________________________________________________________________
-int SimpleHits::ImplFileLine()
-{
-   return ::ROOT::GenerateInitInstanceLocal((const ::SimpleHits*)0x0)->GetImplFileLine();
-}
-
-//______________________________________________________________________________
-TClass *SimpleHits::Dictionary()
-{
-   fgIsA = ::ROOT::GenerateInitInstanceLocal((const ::SimpleHits*)0x0)->GetClass();
-   return fgIsA;
-}
-
-//______________________________________________________________________________
-TClass *SimpleHits::Class()
-{
-   if (!fgIsA.load()) { R__LOCKGUARD2(gInterpreterMutex); fgIsA = ::ROOT::GenerateInitInstanceLocal((const ::SimpleHits*)0x0)->GetClass(); }
-   return fgIsA;
-}
-
-//______________________________________________________________________________
 atomic_TClass_ptr AllPixDigitAnimation::fgIsA(0);  // static to hold class pointer
 
 //______________________________________________________________________________
@@ -369,89 +298,74 @@ TClass *AllPixDigitAnimation::Class()
 }
 
 //______________________________________________________________________________
-void FrameStruct::Streamer(TBuffer &R__b)
-{
-   // Stream an object of class FrameStruct.
-
-   if (R__b.IsReading()) {
-      R__b.ReadClassBuffer(FrameStruct::Class(),this);
-   } else {
-      R__b.WriteClassBuffer(FrameStruct::Class(),this);
-   }
-}
-
-namespace ROOT {
-   // Wrapper around operator delete
-   static void delete_FrameStruct(void *p) {
-      delete ((::FrameStruct*)p);
-   }
-   static void deleteArray_FrameStruct(void *p) {
-      delete [] ((::FrameStruct*)p);
-   }
-   static void destruct_FrameStruct(void *p) {
-      typedef ::FrameStruct current_t;
-      ((current_t*)p)->~current_t();
-   }
-} // end of namespace ROOT for class ::FrameStruct
+atomic_TClass_ptr FrameContainer::fgIsA(0);  // static to hold class pointer
 
 //______________________________________________________________________________
-void FrameContainer::Streamer(TBuffer &R__b)
+const char *FrameContainer::Class_Name()
 {
-   // Stream an object of class FrameContainer.
-
-   if (R__b.IsReading()) {
-      R__b.ReadClassBuffer(FrameContainer::Class(),this);
-   } else {
-      R__b.WriteClassBuffer(FrameContainer::Class(),this);
-   }
+   return "FrameContainer";
 }
-
-namespace ROOT {
-   // Wrappers around operator new
-   static void *new_FrameContainer(void *p) {
-      return  p ? new(p) ::FrameContainer : new ::FrameContainer;
-   }
-   static void *newArray_FrameContainer(Long_t nElements, void *p) {
-      return p ? new(p) ::FrameContainer[nElements] : new ::FrameContainer[nElements];
-   }
-   // Wrapper around operator delete
-   static void delete_FrameContainer(void *p) {
-      delete ((::FrameContainer*)p);
-   }
-   static void deleteArray_FrameContainer(void *p) {
-      delete [] ((::FrameContainer*)p);
-   }
-   static void destruct_FrameContainer(void *p) {
-      typedef ::FrameContainer current_t;
-      ((current_t*)p)->~current_t();
-   }
-} // end of namespace ROOT for class ::FrameContainer
 
 //______________________________________________________________________________
-void WriteToNtuple::Streamer(TBuffer &R__b)
+const char *FrameContainer::ImplFileName()
 {
-   // Stream an object of class WriteToNtuple.
-
-   if (R__b.IsReading()) {
-      R__b.ReadClassBuffer(WriteToNtuple::Class(),this);
-   } else {
-      R__b.WriteClassBuffer(WriteToNtuple::Class(),this);
-   }
+   return ::ROOT::GenerateInitInstanceLocal((const ::FrameContainer*)0x0)->GetImplFileName();
 }
 
-namespace ROOT {
-   // Wrapper around operator delete
-   static void delete_WriteToNtuple(void *p) {
-      delete ((::WriteToNtuple*)p);
-   }
-   static void deleteArray_WriteToNtuple(void *p) {
-      delete [] ((::WriteToNtuple*)p);
-   }
-   static void destruct_WriteToNtuple(void *p) {
-      typedef ::WriteToNtuple current_t;
-      ((current_t*)p)->~current_t();
-   }
-} // end of namespace ROOT for class ::WriteToNtuple
+//______________________________________________________________________________
+int FrameContainer::ImplFileLine()
+{
+   return ::ROOT::GenerateInitInstanceLocal((const ::FrameContainer*)0x0)->GetImplFileLine();
+}
+
+//______________________________________________________________________________
+TClass *FrameContainer::Dictionary()
+{
+   fgIsA = ::ROOT::GenerateInitInstanceLocal((const ::FrameContainer*)0x0)->GetClass();
+   return fgIsA;
+}
+
+//______________________________________________________________________________
+TClass *FrameContainer::Class()
+{
+   if (!fgIsA.load()) { R__LOCKGUARD2(gInterpreterMutex); fgIsA = ::ROOT::GenerateInitInstanceLocal((const ::FrameContainer*)0x0)->GetClass(); }
+   return fgIsA;
+}
+
+//______________________________________________________________________________
+atomic_TClass_ptr FrameStruct::fgIsA(0);  // static to hold class pointer
+
+//______________________________________________________________________________
+const char *FrameStruct::Class_Name()
+{
+   return "FrameStruct";
+}
+
+//______________________________________________________________________________
+const char *FrameStruct::ImplFileName()
+{
+   return ::ROOT::GenerateInitInstanceLocal((const ::FrameStruct*)0x0)->GetImplFileName();
+}
+
+//______________________________________________________________________________
+int FrameStruct::ImplFileLine()
+{
+   return ::ROOT::GenerateInitInstanceLocal((const ::FrameStruct*)0x0)->GetImplFileLine();
+}
+
+//______________________________________________________________________________
+TClass *FrameStruct::Dictionary()
+{
+   fgIsA = ::ROOT::GenerateInitInstanceLocal((const ::FrameStruct*)0x0)->GetClass();
+   return fgIsA;
+}
+
+//______________________________________________________________________________
+TClass *FrameStruct::Class()
+{
+   if (!fgIsA.load()) { R__LOCKGUARD2(gInterpreterMutex); fgIsA = ::ROOT::GenerateInitInstanceLocal((const ::FrameStruct*)0x0)->GetClass(); }
+   return fgIsA;
+}
 
 //______________________________________________________________________________
 void SimpleHits::Streamer(TBuffer &R__b)
@@ -487,6 +401,32 @@ namespace ROOT {
 } // end of namespace ROOT for class ::SimpleHits
 
 //______________________________________________________________________________
+void WriteToNtuple::Streamer(TBuffer &R__b)
+{
+   // Stream an object of class WriteToNtuple.
+
+   if (R__b.IsReading()) {
+      R__b.ReadClassBuffer(WriteToNtuple::Class(),this);
+   } else {
+      R__b.WriteClassBuffer(WriteToNtuple::Class(),this);
+   }
+}
+
+namespace ROOT {
+   // Wrapper around operator delete
+   static void delete_WriteToNtuple(void *p) {
+      delete ((::WriteToNtuple*)p);
+   }
+   static void deleteArray_WriteToNtuple(void *p) {
+      delete [] ((::WriteToNtuple*)p);
+   }
+   static void destruct_WriteToNtuple(void *p) {
+      typedef ::WriteToNtuple current_t;
+      ((current_t*)p)->~current_t();
+   }
+} // end of namespace ROOT for class ::WriteToNtuple
+
+//______________________________________________________________________________
 void AllPixDigitAnimation::Streamer(TBuffer &R__b)
 {
    // Stream an object of class AllPixDigitAnimation.
@@ -511,6 +451,65 @@ namespace ROOT {
       ((current_t*)p)->~current_t();
    }
 } // end of namespace ROOT for class ::AllPixDigitAnimation
+
+//______________________________________________________________________________
+void FrameContainer::Streamer(TBuffer &R__b)
+{
+   // Stream an object of class FrameContainer.
+
+   if (R__b.IsReading()) {
+      R__b.ReadClassBuffer(FrameContainer::Class(),this);
+   } else {
+      R__b.WriteClassBuffer(FrameContainer::Class(),this);
+   }
+}
+
+namespace ROOT {
+   // Wrappers around operator new
+   static void *new_FrameContainer(void *p) {
+      return  p ? new(p) ::FrameContainer : new ::FrameContainer;
+   }
+   static void *newArray_FrameContainer(Long_t nElements, void *p) {
+      return p ? new(p) ::FrameContainer[nElements] : new ::FrameContainer[nElements];
+   }
+   // Wrapper around operator delete
+   static void delete_FrameContainer(void *p) {
+      delete ((::FrameContainer*)p);
+   }
+   static void deleteArray_FrameContainer(void *p) {
+      delete [] ((::FrameContainer*)p);
+   }
+   static void destruct_FrameContainer(void *p) {
+      typedef ::FrameContainer current_t;
+      ((current_t*)p)->~current_t();
+   }
+} // end of namespace ROOT for class ::FrameContainer
+
+//______________________________________________________________________________
+void FrameStruct::Streamer(TBuffer &R__b)
+{
+   // Stream an object of class FrameStruct.
+
+   if (R__b.IsReading()) {
+      R__b.ReadClassBuffer(FrameStruct::Class(),this);
+   } else {
+      R__b.WriteClassBuffer(FrameStruct::Class(),this);
+   }
+}
+
+namespace ROOT {
+   // Wrapper around operator delete
+   static void delete_FrameStruct(void *p) {
+      delete ((::FrameStruct*)p);
+   }
+   static void deleteArray_FrameStruct(void *p) {
+      delete [] ((::FrameStruct*)p);
+   }
+   static void destruct_FrameStruct(void *p) {
+      typedef ::FrameStruct current_t;
+      ((current_t*)p)->~current_t();
+   }
+} // end of namespace ROOT for class ::FrameStruct
 
 namespace ROOT {
    static TClass *vectorlEstringgR_Dictionary();
@@ -901,7 +900,7 @@ namespace {
     };
     static const char* includePaths[] = {
 "./include",
-"/opt/root/root-6.06.08/include",
+"/opt/root/root-6.08.06/include",
 "/opt/allpix/allpix/",
 0
     };
@@ -911,11 +910,11 @@ namespace {
 #pragma clang diagnostic ignored "-Wignored-attributes"
 #pragma clang diagnostic ignored "-Wreturn-type-c-linkage"
 extern int __Cling_Autoloading_Map;
-class __attribute__((annotate("$clingAutoload$allpix_dm.h")))  FrameStruct;
-class __attribute__((annotate("$clingAutoload$allpix_dm.h")))  FrameContainer;
-class __attribute__((annotate("$clingAutoload$AllPix_Frames_WriteToEntuple.h")))  WriteToNtuple;
 class __attribute__((annotate("$clingAutoload$AllPix_Hits_WriteToEntuple.h")))  SimpleHits;
+class __attribute__((annotate("$clingAutoload$AllPix_Frames_WriteToEntuple.h")))  WriteToNtuple;
 class __attribute__((annotate(R"ATTRDUMP(A geometry and event track visualization class)ATTRDUMP"))) __attribute__((annotate("$clingAutoload$AllPixDigitAnimation.hh")))  AllPixDigitAnimation;
+class __attribute__((annotate("$clingAutoload$allpix_dm.h")))  FrameContainer;
+class __attribute__((annotate("$clingAutoload$allpix_dm.h")))  FrameStruct;
 )DICTFWDDCLS";
     static const char* payloadCode = R"DICTPAYLOAD(
 #line 1 "SelDict dictionary payload"

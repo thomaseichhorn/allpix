@@ -54,6 +54,12 @@ void AllPixLCIOwriter::WriteEvent(int runnr, int eventID, map<int,vector<vector<
   event->setDetectorName("AllPix");
   event->parameters().setValue("EventType",2);
 
+  /// thomas
+  /// assuming a rate of 10 khz -> a particle every 100 us
+  /// we define the timestamp as micro seconds...
+  event->setTimeStamp(long64(eventID*100.0));
+  
+  ///
   
   // Let's have a look at the data
 

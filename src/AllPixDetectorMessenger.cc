@@ -389,7 +389,7 @@ void AllPixDetectorMessenger::SetNewValue(G4UIcommand* command, G4String newValu
 
 	if( command == m_magFieldCmd )
 	{
-		// G4cout << "Setting up magnetic field " << m_magFieldCmd->GetNew3VectorValue(newValue) << G4endl;
+		G4cout << "Setting up magnetic field " << m_magFieldCmd->GetNew3VectorValue(newValue) << G4endl;
 		m_AllPixDetector->SetPeakMagField(
 				m_magFieldCmd->GetNew3VectorValue(newValue)
 				);
