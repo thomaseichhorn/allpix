@@ -179,6 +179,44 @@ void AllPixDetectorConstruction::BuildAppliances(int){
 		break;
 	}
 	
+	case 98 :
+	{
+		int detId = 350;
+	
+		G4cout << "Building Alibava Sensor Holder!" << G4endl ;
+
+		G4double boxlength = 60.2/2;
+		G4double boxwidth = 44.2/2;
+
+		G4double spacelength = 32.98/2;
+		G4double spacewidth = 19.9/2;
+
+		G4double boxheight = 9.78/2;
+
+		G4Box *thebox=new G4Box("TheBox",(boxlength)*mm,(boxwidth)*mm,(boxheight)*mm);
+
+		G4Box *spacebox=new G4Box("SpaceBox",(spacelength)*mm,(spacewidth)*mm,(boxheight)*mm);
+
+		G4SubtractionSolid *holderbox = new G4SubtractionSolid("TheBox-SpaceBox",thebox,spacebox);
+
+		G4NistManager* nistman = G4NistManager::Instance();
+		G4Material * Cu = nistman->FindOrBuildMaterial("G4_Cu");
+
+		G4VisAttributes * holderAtt = new G4VisAttributes(G4Color(255,0,0,0.7));
+		holderAtt->SetLineWidth(2);
+		holderAtt->SetForceSolid(true);
+		holderAtt->SetVisibility(true);
+
+		G4LogicalVolume * theholderbox = new G4LogicalVolume(holderbox,Cu,"holderbox",0,0,0);
+		
+		theholderbox->SetVisAttributes(holderAtt);
+
+		new G4PVPlacement(0,G4ThreeVector(-5.0*mm,-2*2.561*mm,0-boxheight/2.0*mm),theholderbox,"ali_phys2",m_wrapper_log[detId],false,0,true);
+
+		G4cout << "Done Building Alibava box! Materials used:" << G4endl ;
+
+	}
+
 	case 99 :
 	{
 		int detId = 350;
@@ -214,21 +252,24 @@ void AllPixDetectorConstruction::BuildAppliances(int){
 		armaflexmaterial->AddElement(elC, fractionmass=32.4*perCent);
 
 		// sizes in mm
-		G4double kapthick = 0.1;
-		G4double armathick = 5.0;
-		G4double innerdim = 25.0;
+		G4double kapthick = 0.1/2;
+		G4double armathick = 5.0/2;
+		
+		G4double boxx = 300.0/2;
+		G4double boxy = 200.0/2;
+		G4double boxz = 60.0/2;
 
 		// first create the outer kapton box
-		G4Box *kaptonbox=new G4Box("KaptonBox",(2.0*innerdim+armathick+kapthick)*mm,(3.0*innerdim+armathick+kapthick)*mm,(innerdim+armathick+kapthick)*mm);
+		G4Box *kaptonbox=new G4Box("KaptonBox",(boxx+armathick+kapthick)*mm,(boxy+armathick+kapthick)*mm,(boxz+armathick+kapthick)*mm);
 
 		// then the armaflex box
-		G4Box *armabox=new G4Box("ArmaBox",(2.0*innerdim+armathick)*mm,(3.0*innerdim+armathick)*mm,(innerdim+armathick)*mm);
+		G4Box *armabox=new G4Box("ArmaBox",(boxx+armathick)*mm,(boxy+armathick)*mm,(boxz+armathick)*mm);
 
 		// remove the armaflex box volume from the kaptonbox volume
 		G4SubtractionSolid *outerbox = new G4SubtractionSolid("KaptonBox-ArmaBox",kaptonbox,armabox);
 
 		// the empty inner box to be removed from the armaflex box
-		G4Box *inside=new G4Box("InnerBox",(2.0*innerdim)*mm,(3.0*innerdim)*mm,(innerdim)*mm);
+		G4Box *inside=new G4Box("InnerBox",(boxx)*mm,(boxy)*mm,(boxz)*mm);
 
 		G4SubtractionSolid *innerbox = new G4SubtractionSolid("OuterBox-InnerBox",outerbox,inside);
 
@@ -237,12 +278,12 @@ void AllPixDetectorConstruction::BuildAppliances(int){
 		kapvis->SetLineWidth(1);
 		kapvis->SetForceSolid(true);
 		m_TestStructure_log->SetVisAttributes(kapvis);
+
+		m_TestStructure_log2 = new G4LogicalVolume(innerbox,armaflexmaterial,"innerbox",0,0,0);
 		G4VisAttributes * armavis = new G4VisAttributes(G4Color(1,1,1,0.5));
 		armavis->SetLineWidth(1);
 		armavis->SetForceSolid(true);
-		m_TestStructure_log->SetVisAttributes(armavis);
-
-		m_TestStructure_log = new G4LogicalVolume(innerbox,armaflexmaterial,"innerbox",0,0,0);
+		m_TestStructure_log2->SetVisAttributes(armavis);
 
 		m_TestStructure_phys = new G4PVPlacement(0,G4ThreeVector(0,0,0),m_TestStructure_log,"ali_phys",m_wrapper_log[detId],false,0,true);
 
@@ -256,7 +297,7 @@ void AllPixDetectorConstruction::BuildAppliances(int){
 
 	default:
 	{
-		G4cout << "Unknown Appliance Type" << G4endl;
+		G4cout << "Unknown Appliance Type" << m_Appliances_type << G4endl;
 		break;
 	}
 	}
