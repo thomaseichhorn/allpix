@@ -71,6 +71,16 @@ if(lcio)
   
 endif()
 
+#---------------------------------------------------------------------------
+# Catch newer Geant4 versions
+#
+if(Geant4_VERSION VERSION_LESS "10.3")
+    message("Found Geant4 version 10.02 or lower...")
+else()
+    ADD_DEFINITIONS(-DHAVE_GEANT4_103)
+    message("Found Geant4 version 10.03 or higher...")
+endif()
+
 #----------------------------------------------------------------------------
 # Locate sources and headers for this project
 # NB: headers are included so they will show up in IDEs
