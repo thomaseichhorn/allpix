@@ -165,6 +165,10 @@ void AllPixPhysicsList::AddStepMax()
 	// Step limitation seen as a process
 	G4StepLimiter* stepLimiter = new G4StepLimiter();
 
+	#ifdef HAVE_GEANT4_103
+	auto theParticleIterator = GetParticleIterator ( );
+	#endif
+
 	theParticleIterator->reset();
 
 	while ((*theParticleIterator)()){
