@@ -110,17 +110,19 @@
 ####################################################################
 
 # The box
-/allpix/extras/setApplianceType         99
-/allpix/extras/setAppliancePosition     0. 0. 270. mm
+# /allpix/extras/setApplianceType         99
+# /allpix/extras/setAppliancePosition     0. 0. 270. mm
 
 # The holder
-/allpix/extras/setApplianceType         98
-/allpix/extras/setAppliancePosition     0. 0. 270. mm
+# /allpix/extras/setApplianceType         98
+# /allpix/extras/setAppliancePosition     0. 0. 270. mm
 
-# Mimosa detectorrotation goes in first angle, also negative
+# Alibava rotations are included as in the gear file
+# alpha is first angle, second is 180.0 - beta, third is 180.0 - gamma
+
 /allpix/det/setId                       350
 /allpix/det/setPosition                 0.0 0.0 270.0 mm
-/allpix/det/setRotation                 -25.0 180.0 180.00 deg
+/allpix/det/setRotation                 0.0 180.0 180.00 deg
 /allpix/det/setTemperature              203
 /allpix/det/setFlux                     0.e15
 /allpix/det/setLowTHL                   13. keV
@@ -147,18 +149,18 @@
 ####################################################################
 # Visualization
 # theta is side, phi is top
-/vis/open OGLIXm 1024x768-100+100
-##/vis/open OGLIX 1024x768-100+100
-/vis/viewer/reset
-/vis/viewer/set/viewpointThetaPhi 40 35
-/vis/viewer/set/style wireframe
-/vis/scene/create
-/vis/scene/add/volume World -1 2
-/vis/scene/add/trajectories
-/vis/scene/add/hits
-/vis/sceneHandler/attach
-/tracking/storeTrajectory 1
-/vis/viewer/zoom 2.0
+#/vis/open OGLIXm 1024x768-100+100
+###/vis/open OGLIX 1024x768-100+100
+#/vis/viewer/reset
+#/vis/viewer/set/viewpointThetaPhi 40 35
+#/vis/viewer/set/style wireframe
+#/vis/scene/create
+#/vis/scene/add/volume World -1 2
+#/vis/scene/add/trajectories
+#/vis/scene/add/hits
+#/vis/sceneHandler/attach
+#/tracking/storeTrajectory 1
+#/vis/viewer/zoom 2.0
 
 
 #/vis/scene/add/axes 0. 0. 0. 1000. cm
@@ -237,9 +239,9 @@
 /gps/pos/type Plane
 /gps/pos/shape Circle
 /gps/pos/centre 0.0 0.0 -100.0 mm
-/gps/pos/halfy 20000. um
-/gps/pos/halfx 20000. um
-/gps/pos/radius 20000. um
+#/gps/pos/halfy 20000. um
+#/gps/pos/halfx 20000. um
+/gps/pos/radius 5000. um
 #/gps/direction 0 0 1
 /gps/energy 5.0 GeV
 /gps/ene/type Gauss
@@ -254,7 +256,7 @@
 ####################################################################
 # Shoot
 # event count
-/allpix/beam/frames 2
+/allpix/beam/frames 1000
 # 'rate'
 /allpix/beam/type const 2
 #/allpix/beam/type gauss 2 0.5

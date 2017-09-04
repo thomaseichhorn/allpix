@@ -22,6 +22,7 @@
 #include "TFile.h"
 #include "TH1D.h"
 #include "TH1I.h"
+#include "TProfile.h"
 
 using namespace std;
 
@@ -51,8 +52,11 @@ class AllPixAlibavaDigitizer : public  AllPixDigitizerInterface
 
 	bool debugmode;
 
+	double funcSharemean ( double x, double shareval, double pitch );
+
 	G4double clustercut;
 	G4double distancereduce;
+	G4double edgemaxsharing;
 	G4double gain;
 	G4double noisemean;
 	G4double noisesigma;
@@ -70,17 +74,21 @@ class AllPixAlibavaDigitizer : public  AllPixDigitizerInterface
 
 	TFile * rootoutputfile;
 
+	TH1D * histoadcout;
 	TH1D * histochargeleft;
 	TH1D * histochargemiddle;
 	TH1D * histochargeright;
+	TH1D * histoeleout;
 	TH1D * histoloss_share;
 	TH1D * histoloss_position;
-	TH1D * histoeleout;
-	TH1D * histoadcout;
 
+	TH1I * histoclustersize;
 	TH1I * histohitcount;
 	TH1I * histohitcountoverthresh;
-	TH1I * histoclustersize;
+	TH1I * histohitmap;
+	TH1I * histohitmap_pix;
+
+	TProfile * histoshare_position;
 
 	AllPixAlibavaDigitsCollection * m_digitsCollection;
 

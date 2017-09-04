@@ -21,6 +21,7 @@
 #include "TFile.h"
 #include "TH1D.h"
 #include "TH1I.h"
+#include "TProfile.h"
 
 
 AllPixAlibavaDigitizer::AllPixAlibavaDigitizer ( G4String modName, G4String hitsColName, G4String digitColName ) : AllPixDigitizerInterface ( modName )
@@ -37,6 +38,23 @@ AllPixAlibavaDigitizer::AllPixAlibavaDigitizer ( G4String modName, G4String hits
 }
 
 
+double AllPixAlibavaDigitizer::funcSharemean ( double x, double shareval, double pitch )
+{
+    double half_pitch = pitch / 2.0;
+
+    double shared_percent = 0.0;
+    // constant charge sharing
+    //shared_percent = shareval;
+
+    // linear charge sharing
+    //shared_percent = fabs (( shareval / half_pitch ) * x );
+
+    // quadratic charge sharing
+    shared_percent = ( shareval / ( half_pitch * half_pitch ) ) * x * x;
+    return shared_percent;
+}
+
+
 void AllPixAlibavaDigitizer::InitVariables ( )
 {
     // set to true for some verbose output
@@ -44,31 +62,26 @@ void AllPixAlibavaDigitizer::InitVariables ( )
 
     AllPixGeoDsc * gD = GetDetectorGeoDscPtr ( );
 
-    // % / 100 mean of charge to be shared, passed from the resistivity
-    sharemean = 0.225;
-    //sharemean = gD -> GetResistivity ( );
+    // % / 100 mean of charge to be shared, passed from the resistivity, default: 0.225
+    sharemean = gD -> GetResistivity ( );
 
-    // % / 100 sigma of charge to be shared, passed from miptot
-    sharesig = 0.05;
-    //sharesig = gD -> GetMIPTot ( );
+    // max charge shared at edge of cell, passed from GetSaturationEnergy
+    edgemaxsharing = gD -> GetSaturationEnergy ( );
+
+    // % / 100 sigma of charge to be shared, passed from clockunit, default: 0.05
+    sharesig = gD -> GetClockUnit ( );
 
     // 1- x % / 100 by how much signals are scaled down if they are not in the centre of the pixel
     // 0.14132 / 44.479 1 / um from fit in run000022 epi 100p unirr data
     // 0.02712 / 28.0768 1 / um from fit in run000225 epi 100p 1.3e16 data
     // passed from mipcharge
-    distancereduce = 0.14132 / 44.479;
-    //distancereduce = gD -> GetMIPCharge ( );
+    distancereduce = gD -> GetMIPCharge ( );
 
-    // gain factor for signals going from electrons to alibava adcs
-    gain = 1 / 183.0;
-    //gain = gD -> GetCounterDepth ( );
+    // gain factor for signals going from electrons to alibava adcs, default 1 / 183.0
+    gain = gD -> GetChipNoise ( );
 
-    // 1 / 183 from electrons to adcs
-    // was ca. 400 * [signal in MeV]
-
-    // threshold for digitizer output, passed from chipthreshold
-    threshold = 0.0;
-    //threshold = gD -> GetThreshold ( );
+    // threshold for digitizer output, passed from chipthreshold, default 0.0
+    threshold = gD -> GetThreshold ( );
 
     // vars for output control plots, not relevant for the simulation
 
@@ -89,22 +102,15 @@ void AllPixAlibavaDigitizer::InitVariables ( )
     pitchX = gD -> GetPixelX ( ) / um;
     pitchY = gD -> GetPixelY ( ) / um;
 
-    // strip sensor: assume sensitive dimesion has more pixels with smaller pitch than the other
-    if ( NPixelX > NPixelY && pitchX < pitchY )
-    {
-	G4cout << "Assuming sensitive dimension is x!" << G4endl;
-	sensdirection = "x";
-    }
-    else if ( NPixelY > NPixelX && pitchY < pitchX )
-    {
-	G4cout << "Assuming sensitive dimension is y!" << G4endl;
-	sensdirection = "y";
-    }
-    else
-    {
-	G4cout << "Could not determine sensitive dimension!" << G4endl;
-	exit ( -1 );
-    }
+    // give some output
+    G4cout << " " << endl;
+    G4cout << "Alibava Digitizer Settings:" << endl;
+    G4cout << "Charge sharing mean is " << sharemean << "!" << G4endl;
+    G4cout << "Charge sharing max at edge is " << edgemaxsharing << "!" << G4endl;
+    G4cout << "Charge sharing sigma is " << sharesig << "!" << G4endl;
+    G4cout << "Charge deposition distance reduction is " << distancereduce << "!" << G4endl;
+    G4cout << "Gain is " << gain << "!" << G4endl;
+    G4cout << "Digitizer threshold is " << threshold << "!" << G4endl;
 
     rootoutputfile = new TFile ( "someoutputfile.root", "RECREATE" );
 
@@ -138,6 +144,36 @@ void AllPixAlibavaDigitizer::InitVariables ( )
     histoeleout = new TH1D ( "Track Induced Signal in Electrons", "Track Induced Signal in Electrons", 250, 0, 40000 );
     histoeleout -> SetTitle ( "Track Induced Signal in Electrons;Electrons;Entries" );
 
+    histoshare_position = new TProfile ( "Charge Shared vs. Track Position", "Charge Shared vs. Track Position", 100, 0, 1 );
+    histoshare_position -> SetTitle ( "Charge Shared vs. Track Position;Track Position in Units of Pitch;ADCs" );
+
+    histohitmap_pix = new TH1I ( "Track Point Hitmap within Channel", "Track Point Hitmap within Channel", 100, 0, 1 );
+    histohitmap_pix -> SetTitle ( "Track Point Hitmap within Channel;Track Position in Units of Pitch;Entries" );
+
+    // strip sensor: assume sensitive dimesion has more pixels with smaller pitch than the other
+    if ( NPixelX > NPixelY && pitchX < pitchY )
+    {
+	G4cout << "Assuming sensitive dimension is x!" << G4endl;
+	sensdirection = "x";
+
+	histohitmap = new TH1I ( "Track Point Hitmap", "Track Point Hitmap", NPixelX, 0, NPixelX - 1 );
+	histohitmap -> SetTitle ( "Track Point Hitmap;Channel in X;Entries" );
+
+    }
+    else if ( NPixelY > NPixelX && pitchY < pitchX )
+    {
+	G4cout << "Assuming sensitive dimension is y!" << G4endl;
+	sensdirection = "y";
+
+	histohitmap = new TH1I ( "Track Point Hitmap", "Track Point Hitmap", NPixelY, 0, NPixelY - 1 );
+	histohitmap -> SetTitle ( "Track Point Hitmap;Channel in Y;Entries" );
+    }
+    else
+    {
+	G4cout << "Could not determine sensitive dimension!" << G4endl;
+	exit ( -1 );
+    }
+
 }
 
 
@@ -170,6 +206,12 @@ AllPixAlibavaDigitizer::~AllPixAlibavaDigitizer ( )
     TF1 * fitelec = new TF1 ( "fitelec", "landau" );
     histoeleout -> Fit ( fitelec, "Q" );
     histoeleout -> Write ( );
+
+    histohitmap -> Write ( );
+
+    histoshare_position -> Write ( );
+
+    histohitmap_pix -> Write ( );
 
     rootoutputfile -> Close ( );
 
@@ -304,14 +346,18 @@ void AllPixAlibavaDigitizer::Digitize ( )
 	totallosssignal += positionloss[0];
 	totallosssignal += positionloss[1];
 
-	if ( debugmode == true )
-	{
-	    G4cout << "Charge 'lost' due to position is " << positionloss[0] + positionloss[1] << " keV" << G4endl;
-	}
-
 	// chargeshare spreads a percentage of the actual charge to the two neighbouring pixels
 	// this is randomized
-	double chargeshare = CLHEP::RandGauss::shoot ( sharemean, sharesig );
+	double chargeshare = 0.0;
+	
+	if ( sensdirection == "x" )
+	{
+	    chargeshare = CLHEP::RandGauss::shoot ( funcSharemean ( vec[0], edgemaxsharing, pitchX ), sharesig );
+	}
+	else if ( sensdirection == "y" )
+	{
+	    chargeshare = CLHEP::RandGauss::shoot ( funcSharemean ( vec[1], edgemaxsharing, pitchY ), sharesig );
+	}
 
 	if ( debugmode == true )
 	{
@@ -395,6 +441,27 @@ void AllPixAlibavaDigitizer::Digitize ( )
 	    G4cout << "Right  pixel is ( " << rightcsharePixel.first << " | " << rightcsharePixel.second << " ) with charge " << pixelsContent[rightcsharePixel] << G4endl;
 	}
 
+	if ( sensdirection == "x" )
+	{
+	    double relpos = vec[0] / pitchX;
+	    if ( relpos < 0 )
+	    {
+		relpos += 1.0;
+	    }
+	    histoshare_position -> Fill ( relpos, ( rightsignal[0] + leftsignal[0] ) );
+	    histohitmap_pix -> Fill ( relpos );
+	}
+	else if ( sensdirection == "y" )
+	{
+	    double relpos = vec[1] / pitchY;
+	    if ( relpos < 0 )
+	    {
+		relpos += 1.0;
+	    }
+	    histoshare_position -> Fill ( relpos, ( rightsignal[1] + leftsignal[1] ) );
+	    histohitmap_pix -> Fill ( relpos );
+	}
+
     }
 
     if ( debugmode == true )
@@ -425,20 +492,23 @@ void AllPixAlibavaDigitizer::Digitize ( )
     }
     histoloss_position -> Fill ( totallosssignal );
     histoloss_share -> Fill ( totalshare );
+
+
+
     double noise = CLHEP::RandGauss::shoot ( noisemean, noisesigma );
 
     int clustersize = 0;
-    if ( ( totalcentresignal + noise ) > seedcut )
+    if ( ( totalcentresignal + noise ) > seedcut * noisesigma )
     {
 	clustersize++;
 
 	noise = CLHEP::RandGauss::shoot ( noisemean, noisesigma );
-	if ( ( totalleftsignal + noise ) > clustercut )
+	if ( ( totalleftsignal + noise ) > clustercut * noisesigma )
 	{
 	    clustersize++;
 	}
 	noise = CLHEP::RandGauss::shoot ( noisemean, noisesigma );
-	if ( ( totalrightsignal + noise ) > clustercut )
+	if ( ( totalrightsignal + noise ) > clustercut * noisesigma )
 	{
 	    clustersize++;
 	}
@@ -472,6 +542,14 @@ void AllPixAlibavaDigitizer::Digitize ( )
 	    AllPixAlibavaDigit * digit = new AllPixAlibavaDigit;
 	    digit -> SetPixelIDX ( ( *pCItr ).first.first );
 	    digit -> SetPixelIDY ( ( *pCItr ).first.second );
+	    if ( sensdirection == "x" )
+	    {
+		histohitmap -> Fill ( ( *pCItr ).first.first, 1 );
+	    }
+	    else if ( sensdirection == "y" )
+	    {
+		histohitmap -> Fill ( ( *pCItr ).first.second, 1 );
+	    }
 	    signal = ( *pCItr ).second;
 	    digit -> SetPixelCounts ( signal );
 	    m_digitsCollection -> insert ( digit );

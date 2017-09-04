@@ -125,13 +125,13 @@
 /allpix/det/setLowTHL                   13. keV
 /allpix/det/setAcqTime                  25. ns
 
-##/allpix/det/setId                       352
-##/allpix/det/setPosition                 0.0 0.0 274.0 mm
-##/allpix/det/setRotation                 0.0 180.0 180.00 deg
-##/allpix/det/setTemperature              203
-##/allpix/det/setFlux                     0.e15
-##/allpix/det/setLowTHL                   13. keV
-##/allpix/det/setAcqTime                  25. ns
+/allpix/det/setId                       352
+/allpix/det/setPosition                 0.0 0.0 274.0 mm
+/allpix/det/setRotation                 0.0 180.0 180.00 deg
+/allpix/det/setTemperature              203
+/allpix/det/setFlux                     0.e15
+/allpix/det/setLowTHL                   13. keV
+/allpix/det/setAcqTime                  25. ns
 ##
 
 #### Set a magnetic field
@@ -157,18 +157,18 @@
 ####################################################################
 # Visualization
 # theta is side, phi is top
-###/vis/open OGLIXm 1024x768-100+100
-#####/vis/open OGLIX 1024x768-100+100
-###/vis/viewer/reset
-###/vis/viewer/set/viewpointThetaPhi 40 35
-###/vis/viewer/set/style wireframe
-###/vis/scene/create
-###/vis/scene/add/volume World -1 2
-###/vis/scene/add/trajectories
-###/vis/scene/add/hits
-###/vis/sceneHandler/attach
-###/tracking/storeTrajectory 1
-###/vis/viewer/zoom 2.0
+/vis/open OGLIXm 1024x768-100+100
+##/vis/open OGLIX 1024x768-100+100
+/vis/viewer/reset
+/vis/viewer/set/viewpointThetaPhi 40 35
+/vis/viewer/set/style wireframe
+/vis/scene/create
+/vis/scene/add/volume World -1 2
+/vis/scene/add/trajectories
+/vis/scene/add/hits
+/vis/sceneHandler/attach
+/tracking/storeTrajectory 1
+/vis/viewer/zoom 2.0
 ######
 
 #/vis/scene/add/axes 0. 0. 0. 1000. cm
@@ -264,7 +264,7 @@
 ####################################################################
 # Shoot
 # event count
-/allpix/beam/frames 10
+/allpix/beam/frames 2
 # 'rate'
 /allpix/beam/type const 1
 #/allpix/beam/type gauss 3 0.5

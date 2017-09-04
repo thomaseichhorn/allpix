@@ -1137,6 +1137,8 @@ void AllPixDetectorConstruction::SetMaxStepLengthSensor(G4double val) {
 #include "G4PropagatorInField.hh"
 void AllPixDetectorConstruction::SetPeakMagField(G4ThreeVector fieldValues)
 {
+    
+
 	//apply a global uniform magnetic field along Z axis
 	G4FieldManager * fieldMgr
 	= G4TransportationManager::GetTransportationManager()->GetFieldManager();
@@ -1166,24 +1168,92 @@ void AllPixDetectorConstruction::SetPeakMagField(G4ThreeVector fieldValues)
     }
 
 
-    //if(m_magField) {
+    if(m_magField) {
 
-    // test at center of telescope (same point that center of magnet)
-    //		G4double xyz[4] = { 1.*mm, 1.*mm, 0.*mm, 0.*mm };
-    //		G4double fieldVal[3] = { 0, 0, 0 };
-    //
-    //		m_magField->GetFieldValue(xyz, fieldVal);
-    //		std::cout << "y field (z=" << xyz[2]/mm << ") = " << fieldVal[1] << std::endl;
-    //
-    //		xyz[2] = 252.5*mm;
-    //		m_magField->GetFieldValue(xyz, fieldVal);
-    //		std::cout << "y field (z=" << xyz[2]/mm << ") = " << fieldVal[1] << std::endl;
-    //
-    //		xyz[2] = -3000*mm;
-    //		m_magField->GetFieldValue(xyz, fieldVal);
-    //		std::cout << "y field (z=" << xyz[2]/mm << ") = " << fieldVal[1] << std::endl;
+     //test at center of telescope (same point that center of magnet)
+    		G4double xyz[4] = { 1.*mm, 1.*mm, 0.*mm, 0.*mm };
+    		G4double fieldVal[3] = { 0, 0, 0 };
+    
+    		m_magField->GetFieldValue(xyz, fieldVal);
+    		std::cout << "y field (z=" << xyz[2]/mm << ") = " << fieldVal[0] << std::endl;
+    
+    		xyz[2] = 252.5*mm;
+    		m_magField->GetFieldValue(xyz, fieldVal);
+    		std::cout << "y field (z=" << xyz[2]/mm << ") = " << fieldVal[0] << std::endl;
+    
+    		xyz[2] = -3000*mm;
+    		m_magField->GetFieldValue(xyz, fieldVal);
+    		std::cout << "y field (z=" << xyz[2]/mm << ") = " << fieldVal[0] << std::endl;
 
-    //}
+    }
+    
+    
+    
+/*
+    // vacuum
+    G4NistManager* man = G4NistManager::Instance ( );
+    G4Material* vac = man -> FindOrBuildMaterial ( "G4_Galactic" );
+
+    // the box with the field in it
+    G4double magbox_hx = 10.0 * mm;
+    G4double magbox_hy = 10.0 * mm;
+    G4double magbox_hz = 10.0 * mm;
+    G4Box* magBox = new G4Box ( "magfieldbox", magbox_hx, magbox_hy, magbox_hz );
+
+    // logical volume with the box
+    G4LogicalVolume* magboxLog = new G4LogicalVolume ( magBox, vac, "magfieldbox" );
+    
+    
+    
+		G4VisAttributes * somevis = new G4VisAttributes(G4Color(1,1,1,0.5));
+		somevis->SetLineWidth(1);
+		somevis->SetForceSolid(true);
+		somevis->SetVisibility(true);
+		magboxLog->SetVisAttributes(somevis);
+
+    // placement of the logical volume in the world
+    m_TestStructure_phys = new G4PVPlacement(0,G4ThreeVector(0,0,0),magboxLog,"magboxphys",m_wrapper_log[350],false,0,true);
+    //G4VPhysicalVolume* trackerPhys = new G4PVPlacement ( 0, G4ThreeVector ( pos_x, pos_y, pos_z ), magboxLog, "placement", expHall_log, false, 0 );
+    // no rotation// translation position // its logical volume // its name // its mother (logical) volume // no boolean operations
+
+    
+    // local magnetic field:
+    G4FieldManager * fieldMgr = G4TransportationManager::GetTransportationManager ( ) -> GetFieldManager ( );
+    G4TransportationManager* tmanager = G4TransportationManager::GetTransportationManager ( );
+    tmanager -> GetPropagatorInField ( ) -> SetLargestAcceptableStep ( 1 * mm );
+    m_magField_cartesian = fieldValues/tesla;
+
+    m_magField = new G4UniformMagField ( fieldValues.getR ( ), fieldValues.getTheta ( ), fieldValues.getPhi ( ) );
+    fieldMgr -> SetDetectorField ( m_magField );
+    fieldMgr -> CreateChordFinder ( m_magField );
+
+    fieldMgr -> SetMinimumEpsilonStep ( 1e-7 );
+    fieldMgr -> SetMaximumEpsilonStep ( 1e-6 );
+    fieldMgr -> SetDeltaOneStep ( 0.05e-3 * mm );  // 0.5 micrometer
+
+    G4bool allLocal = true;
+    magboxLog -> SetFieldManager ( fieldMgr, allLocal );
+
+    
+    if(m_magField) {
+
+     //test at center of telescope (same point that center of magnet)
+    		G4double xyz[4] = { 1.*mm, 1.*mm, 0.*mm, 0.*mm };
+    		G4double fieldVal[3] = { 0, 0, 0 };
+    
+    		m_magField->GetFieldValue(xyz, fieldVal);
+    		std::cout << "x field (z=" << xyz[2]/mm << ") = " << fieldVal[0] << std::endl;
+    
+    		xyz[2] = 270*mm;
+    		m_magField->GetFieldValue(xyz, fieldVal);
+    		std::cout << "x field (z=" << xyz[2]/mm << ") = " << fieldVal[0] << std::endl;
+    
+    		xyz[2] = 300*mm;
+    		m_magField->GetFieldValue(xyz, fieldVal);
+    		std::cout << "x field (z=" << xyz[2]/mm << ") = " << fieldVal[0] << std::endl;
+
+    }
+    */
 
 }
 
