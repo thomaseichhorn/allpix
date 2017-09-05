@@ -211,7 +211,7 @@ void AllPixDetectorConstruction::BuildAppliances(int){
 		
 		theholderbox->SetVisAttributes(holderAtt);
 
-		new G4PVPlacement(0,G4ThreeVector(-5.0*mm,-2*2.561*mm,0-boxheight/2.0*mm),theholderbox,"ali_phys2",m_wrapper_log[detId],false,0,true);
+		new G4PVPlacement(0,G4ThreeVector(0.0*mm,0.0*mm,0-boxheight/2.0*mm),theholderbox,"ali_phys2",m_wrapper_log[detId],false,0,true);
 
 		G4cout << "Done Building Alibava box! Materials used:" << G4endl ;
 

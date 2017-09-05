@@ -52,40 +52,36 @@
 <pcb_hz units="um">0.0</pcb_hz>
 
 <!-- sharemean -->
-<!--sensor_resistivity>0.225</sensor_resistivity-->
-<sensor_resistivity>0.0</sensor_resistivity>
+<sensor_resistivity> 0.0 </sensor_resistivity>
 
-<!-- sharesig -->
-<!--MIP_Tot> 0.05 </MIP_Tot-->
+<!-- unused -->
 <MIP_Tot> 0.0 </MIP_Tot>
 
 <!-- distancereduce -->
-<!--MIP_Charge> 0.00317722970391 </MIP_Charge-->
 <MIP_Charge> 0.0 </MIP_Charge>
 
+<!-- unused -->
+<Counter_Depth> 0.0 </Counter_Depth>
+
+<!-- sharesig -->
+<Clock_Unit> 0.0 </Clock_Unit>
+
 <!-- gain -->
-<Counter_Depth> 0.00546448087432 </Counter_Depth>
-
-<!-- unused -->
-<Clock_Unit> 0 </Clock_Unit>
-
-<!-- unused -->
-<Chip_Noise> 0 </Chip_Noise>
+<Chip_Noise> 0.005464481 </Chip_Noise>
 
 <!-- digitizer threshold -->
-<Chip_Threshold> 0.0 </Chip_Threshold>
+<Chip_Threshold> -10.0 </Chip_Threshold>
 
 <!-- unused -->
-<Cross_Talk>0.01</Cross_Talk>
+<Cross_Talk> 0.0 </Cross_Talk>
 
-<!-- unused -->
-<Saturation_Energy>350.</Saturation_Energy>
+<!-- share max at edge -->
+<Saturation_Energy> 0.0 </Saturation_Energy>
 
 </pixeldet>
 
 
-
-<!-- 8CBC2 using alibava-->
+<!-- 1x8CBC2 using alibava-->
 <pixeldet id="355">
 
 <digitizer>Alibava</digitizer>
@@ -130,34 +126,33 @@
 <pcb_hz units="um">0.0</pcb_hz>
 
 <!-- sharemean -->
-<sensor_resistivity>0.225</sensor_resistivity>
+<sensor_resistivity> 0.0 </sensor_resistivity>
 
-<!-- sharesig -->
-<MIP_Tot> 0.05 </MIP_Tot>
+<!-- unused -->
+<MIP_Tot> 0.0 </MIP_Tot>
 
 <!-- distancereduce -->
-<MIP_Charge> 0.00317722970391 </MIP_Charge>
+<MIP_Charge> 0.0 </MIP_Charge>
+
+<!-- unused -->
+<Counter_Depth> 0.0 </Counter_Depth>
+
+<!-- sharesig -->
+<Clock_Unit> 0.0 </Clock_Unit>
 
 <!-- gain -->
-<Counter_Depth> 0.00546448087432 </Counter_Depth>
-
-<!-- unused -->
-<Clock_Unit> 0 </Clock_Unit>
-
-<!-- unused -->
-<Chip_Noise> 0 </Chip_Noise>
+<Chip_Noise> 0.005464481 </Chip_Noise>
 
 <!-- digitizer threshold -->
-<Chip_Threshold> 0.0 </Chip_Threshold>
+<Chip_Threshold> -10.0 </Chip_Threshold>
 
 <!-- unused -->
-<Cross_Talk>0.01</Cross_Talk>
+<Cross_Talk> 0.0 </Cross_Talk>
 
-<!-- unused -->
-<Saturation_Energy>350.</Saturation_Energy>
+<!-- share max at edge -->
+<Saturation_Energy> 0.0 </Saturation_Energy>
 
 </pixeldet>
-
 
 
 <!-- Alibava Strip sensor -->

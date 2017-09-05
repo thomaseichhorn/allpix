@@ -47,7 +47,7 @@ double AllPixAlibavaDigitizer::funcSharemean ( double x, double shareval, double
     //shared_percent = shareval;
 
     // linear charge sharing
-    //shared_percent = fabs (( shareval / half_pitch ) * x );
+    //shared_percent = fabs ( ( shareval / half_pitch ) * x );
 
     // quadratic charge sharing
     shared_percent = ( shareval / ( half_pitch * half_pitch ) ) * x * x;
