@@ -408,17 +408,39 @@ void AllPixAlibavaDigitizer::Digitize ( )
 	pixelsContent[tempPixel] += ( centresignal[0] + centresignal[1] );
 	if ( sensdirection == "y" )
 	{
-	    leftcsharePixel.first = tempPixel.first;
-	    leftcsharePixel.second = tempPixel.second - 1;
-	    rightcsharePixel.first = tempPixel.first;
-	    rightcsharePixel.second = tempPixel.second + 1;
+	    // catch sensor edges
+	    if ( tempPixel.second > 0 && tempPixel.second < ( NPixelY - 1 ) )
+	    {
+		leftcsharePixel.first = tempPixel.first;
+		leftcsharePixel.second = tempPixel.second - 1;
+		rightcsharePixel.first = tempPixel.first;
+		rightcsharePixel.second = tempPixel.second + 1;
+	    }
+	    else
+	    {
+		leftcsharePixel.first = tempPixel.first;
+		leftcsharePixel.second = tempPixel.second;
+		rightcsharePixel.first = tempPixel.first;
+		rightcsharePixel.second = tempPixel.second;
+	    }
 	}
 	else if ( sensdirection == "x" )
 	{
-	    leftcsharePixel.first = tempPixel.first - 1;
-	    leftcsharePixel.second = tempPixel.second;
-	    rightcsharePixel.first = tempPixel.first + 1;
-	    rightcsharePixel.second = tempPixel.second;
+	    // catch sensor edges
+	    if ( tempPixel.first > 0 && tempPixel.first < ( NPixelX - 1 ) )
+	    {
+		leftcsharePixel.first = tempPixel.first - 1;
+		leftcsharePixel.second = tempPixel.second;
+		rightcsharePixel.first = tempPixel.first + 1;
+		rightcsharePixel.second = tempPixel.second;
+	    }
+	    else
+	    {
+		leftcsharePixel.first = tempPixel.first;
+		leftcsharePixel.second = tempPixel.second;
+		rightcsharePixel.first = tempPixel.first;
+		rightcsharePixel.second = tempPixel.second;
+	    }
 	}
 	else
 	{

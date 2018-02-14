@@ -2,15 +2,54 @@
 <!DOCTYPE detectors SYSTEM "pixeldetector.dtd">
 
 <detectors>
+<!-- CMS Pixel Quad Module -->
+<pixeldet id="906">
+
+<digitizer>CMSp1</digitizer>
+
+<npix_x>416</npix_x>
+<npix_y>160</npix_y>
+<npix_z>0</npix_z>
+
+<pixsize_x units="um">75.0</pixsize_x>
+<pixsize_y units="um">50.0</pixsize_y>
+<pixsize_z units="um">142.5.</pixsize_z>
+
+<sensor_hx units="um">31200.0</sensor_hx>
+<sensor_hy units="um">8000.0</sensor_hy>
+<sensor_hz units="um">142.5</sensor_hz>
+
+<!-- unchecked -->
+<sensor_gr_excess_htop units="um">375.0</sensor_gr_excess_htop>
+<sensor_gr_excess_hbottom units="um">375.0</sensor_gr_excess_hbottom>
+<sensor_gr_excess_hright units="um">475.0</sensor_gr_excess_hright>
+<sensor_gr_excess_hleft units="um">475.0</sensor_gr_excess_hleft>
+
+<sensor_posx units="mm">0</sensor_posx>
+<sensor_posy units="mm">0</sensor_posy>
+<sensor_posz units="mm">0</sensor_posz>
+
+<chip_hx units="um">31200.0</chip_hx>
+<chip_hy units="um">8000.0</chip_hy>
+<chip_hz units="um">0.0</chip_hz>
+
+<chip_posx units="um">0.</chip_posx>
+<chip_posy units="um">0.</chip_posy>
+<chip_posz units="um">0.</chip_posz>
+
+<pcb_hx units="mm">31.2</pcb_hx>
+<pcb_hy units="mm">8.0</pcb_hy>
+<pcb_hz units="mm">0.00000001</pcb_hz>
+
+</pixeldet>
 
 
-
-<!-- 2xCBC2 using alibava digitizer, 127 strip sensor -->
+<!-- 2xCBC2 using alibava digitizer, 254 strip sensor -->
 <pixeldet id="351,352">
 
 <digitizer>Alibava</digitizer>
 
-<npix_x>127</npix_x>
+<npix_x>254</npix_x>
 <npix_y>1</npix_y>
 <npix_z>0</npix_z>
 
@@ -20,7 +59,7 @@
 <pixsize_z units="um">100.0</pixsize_z>
 
 <!-- pix * pixsize + gr_excess * 2 -->
-<sensor_hx units="um">5716.0</sensor_hx>
+<sensor_hx units="um">11431.0</sensor_hx>
 <sensor_hy units="um">23972.0</sensor_hy>
 <sensor_hz units="um">100.0</sensor_hz>
 
@@ -33,7 +72,7 @@
 <sensor_posy units="mm">0.0</sensor_posy>
 <sensor_posz units="mm">0.0</sensor_posz>
 
-<chip_hx units="um">5716.0</chip_hx>
+<chip_hx units="um">11431.0</chip_hx>
 <chip_hy units="um">23972.0</chip_hy>
 <chip_hz units="um">60.0</chip_hz>
 
@@ -47,7 +86,7 @@
 <bump_offset_y units="um">0.0</bump_offset_y>
 <bump_dr units="um">0.0</bump_dr>
 
-<pcb_hx units="um">5716.0</pcb_hx>
+<pcb_hx units="um">11431.0</pcb_hx>
 <pcb_hy units="um">23972.0</pcb_hy>
 <pcb_hz units="um">0.0</pcb_hz>
 

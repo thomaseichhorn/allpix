@@ -1,6 +1,5 @@
 ####################################################################
 #### Simulation of a CBC in the DATURA Telescope at DESY
-#### Plane positions taken from run 22 alibava
 ####################################################################
 
 
@@ -28,14 +27,14 @@
 
 # Al Holder
 /allpix/extras/setTestStructureType     8
-/allpix/extras/setTestStructurePosition 0.0 0.0 60.0 mm
+/allpix/extras/setTestStructurePosition 0.0 0.0 150.0 mm
 /allpix/extras/setTestStructureRotation 0.0 0.0 0.0 deg
 /allpix/extras/setTestStructureDetLink  301
 
 # Mimosa detector
 /allpix/det/setId                       301
-/allpix/det/setPosition                 0.293925 -0.206111 60.0 mm
-/allpix/det/setRotation                 0.0 180.0 179.9368834 deg
+/allpix/det/setPosition                 0.0 0.0 150.0 mm
+/allpix/det/setRotation                 0.0 180.0 180.0 deg
 /allpix/det/setLowTHL                   13. keV
 /allpix/det/setAcqTime                  115000. ns
 
@@ -46,14 +45,14 @@
 
 # Al Holder
 /allpix/extras/setTestStructureType     8
-/allpix/extras/setTestStructurePosition 0.0 0.0 120.0 mm
+/allpix/extras/setTestStructurePosition 0.0 0.0 300.0 mm
 /allpix/extras/setTestStructureRotation 0.0 0.0 0.0 deg
 /allpix/extras/setTestStructureDetLink  302
 
 # Mimosa detector
 /allpix/det/setId                       302
-/allpix/det/setPosition                 0.595662 -0.100966 120.0 mm
-/allpix/det/setRotation                 0.0 180.0 179.99436699 deg
+/allpix/det/setPosition                 0.0 0.0 300.0 mm
+/allpix/det/setRotation                 0.0 180.0 180.00 deg
 /allpix/det/setLowTHL                   13. keV
 /allpix/det/setAcqTime                  9115000. ns
 
@@ -64,14 +63,14 @@
 
 # Al Holder
 /allpix/extras/setTestStructureType     8
-/allpix/extras/setTestStructurePosition 0.0 0.0 419.0 mm
+/allpix/extras/setTestStructurePosition 0.0 0.0 442.0 mm
 /allpix/extras/setTestStructureRotation 0.0 0.0 0.0 deg
 /allpix/extras/setTestStructureDetLink  303
 
 # Mimosa detector
 /allpix/det/setId                       303
-/allpix/det/setPosition                 0.594746 0.0643153 419 mm
-/allpix/det/setRotation                 0.0 180.0 179.99426548 deg
+/allpix/det/setPosition                 0.0 0.0 442.0 mm
+/allpix/det/setRotation                 0.0 180.0 180.0 deg
 /allpix/det/setLowTHL                   13. keV
 /allpix/det/setAcqTime                  115000. ns
 
@@ -82,14 +81,14 @@
 
 # Al Holder
 /allpix/extras/setTestStructureType     8
-/allpix/extras/setTestStructurePosition 0.0 0.0 479 mm
+/allpix/extras/setTestStructurePosition 0.0 0.0 592 mm
 /allpix/extras/setTestStructureRotation 0.0 0.0 0.0 deg
 /allpix/extras/setTestStructureDetLink  304
 
 # Mimosa detector
 /allpix/det/setId                       304
-/allpix/det/setPosition                 -0.0833761 0.108647 479.0 mm
-/allpix/det/setRotation                 0.0 180.0 179.759936 deg
+/allpix/det/setPosition                 0.0 0.0 592 mm
+/allpix/det/setRotation                 0.0 180.0 180 deg
 /allpix/det/setLowTHL                   13. keV
 /allpix/det/setAcqTime                  115000. ns
 
@@ -100,13 +99,13 @@
 
 # Al Holder
 /allpix/extras/setTestStructureType     8
-/allpix/extras/setTestStructurePosition 0.0 0.0 539.0 mm
+/allpix/extras/setTestStructurePosition 0.0 0.0 642.0 mm
 /allpix/extras/setTestStructureRotation 0.0 0.0 0.0 deg
 /allpix/extras/setTestStructureDetLink  305
 
 # Mimosa detector
 /allpix/det/setId                       305
-/allpix/det/setPosition                 -0.544312 0.0627556 539.0 mm
+/allpix/det/setPosition                 0.0 0.0 642.0 mm
 /allpix/det/setRotation                 0.0 180.0 180.0 deg
 /allpix/det/setLowTHL                   13. keV
 /allpix/det/setAcqTime                  115000. ns
@@ -116,23 +115,36 @@
 #### CBC DUT
 ####################################################################
 
-#### detector rotation alpha goes in first angle, also negative. beta and gamma are 180.0 for nominal position
-
 /allpix/det/setId                       351
-/allpix/det/setPosition                 0.330558 -0.179223 270.0 mm
-/allpix/det/setRotation                 -0.00822646 180.000191338 178.66256 deg
+/allpix/det/setPosition                 0.0 0.0 369.030384 mm
+/allpix/det/setRotation                 0.0 190.0 180.00 deg
 /allpix/det/setTemperature              203
 /allpix/det/setFlux                     0.e15
 /allpix/det/setLowTHL                   13. keV
 /allpix/det/setAcqTime                  25. ns
 
 /allpix/det/setId                       352
-/allpix/det/setPosition                 0.330558 -0.179223 274.0 mm
-/allpix/det/setRotation                 -0.00822646 180.000191338 178.66256 deg
+/allpix/det/setPosition                 0.0 0.0 372.969616 mm
+/allpix/det/setRotation                 0.0 190.0 180.00 deg
 /allpix/det/setTemperature              203
 /allpix/det/setFlux                     0.e15
 /allpix/det/setLowTHL                   13. keV
 /allpix/det/setAcqTime                  25. ns
+
+
+####################################################################
+#### Pixel Reference
+####################################################################
+
+/allpix/det/setId                       906
+/allpix/det/setPosition                 0.0 0.0 692.0 mm
+/allpix/det/setRotation                 23.0 14.5 180.00 deg
+/allpix/det/setTemperature              203
+/allpix/det/setFlux                     0.
+/allpix/det/setLowTHL                   13. keV
+/allpix/det/setAcqTime                  25. ns
+/allpix/det/skipPropagation             1
+
 
 
 #### Set a magnetic field
@@ -158,19 +170,19 @@
 ####################################################################
 # Visualization
 # theta is side, phi is top
-##/vis/open OGLIXm 1024x768-100+100
-#####/vis/open OGLIX 1024x768-100+100
-##/vis/viewer/reset
-##/vis/viewer/set/viewpointThetaPhi 40 35
-##/vis/viewer/set/style wireframe
-##/vis/scene/create
-##/vis/scene/add/volume World -1 2
-##/vis/scene/add/trajectories
-##/vis/scene/add/hits
-##/vis/sceneHandler/attach
-##/tracking/storeTrajectory 1
-##/vis/viewer/zoom 2.0
-###########
+#/vis/open OGLIXm 1024x768-100+100
+###/vis/open OGLIX 1024x768-100+100
+#/vis/viewer/reset
+#/vis/viewer/set/viewpointThetaPhi 40 35
+#/vis/viewer/set/style wireframe
+#/vis/scene/create
+#/vis/scene/add/volume World -1 2
+#/vis/scene/add/trajectories
+#/vis/scene/add/hits
+#/vis/sceneHandler/attach
+#/tracking/storeTrajectory 1
+#/vis/viewer/zoom 2.0
+#######
 
 #/vis/scene/add/axes 0. 0. 0. 1000. cm
 #/vis/viewer/set/style s
@@ -267,8 +279,8 @@
 # event count
 /allpix/beam/frames 10000
 # 'rate'
-#/allpix/beam/type const 1
-/allpix/beam/type gauss 3 0.5
+/allpix/beam/type const 1
+#/allpix/beam/type gauss 3 0.5
 /allpix/beam/on
 
 ##/vis/viewer/flush
