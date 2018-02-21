@@ -109,7 +109,7 @@
 <Chip_Noise> 0.005464481 </Chip_Noise>
 
 <!-- digitizer threshold -->
-<Chip_Threshold> -10.0 </Chip_Threshold>
+<Chip_Threshold> 10.0 </Chip_Threshold>
 
 <!-- unused -->
 <Cross_Talk> 0.0 </Cross_Talk>

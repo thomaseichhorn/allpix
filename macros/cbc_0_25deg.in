@@ -116,16 +116,16 @@
 ####################################################################
 
 /allpix/det/setId                       351
-/allpix/det/setPosition                 0.347296 0.0 369.030384 mm
-/allpix/det/setRotation                 0.0 190.0 180.00 deg
+/allpix/det/setPosition                 0.008727 0.0 369.000019 mm
+/allpix/det/setRotation                 0.0 180.25 180.00 deg
 /allpix/det/setTemperature              203
 /allpix/det/setFlux                     0.e15
 /allpix/det/setLowTHL                   13. keV
 /allpix/det/setAcqTime                  25. ns
 
 /allpix/det/setId                       352
-/allpix/det/setPosition                 -0.347296 0.0 372.969616 mm
-/allpix/det/setRotation                 0.0 190.0 180.00 deg
+/allpix/det/setPosition                 -0.008727 0.0 372.999981 mm
+/allpix/det/setRotation                 0.0 180.25 180.00 deg
 /allpix/det/setTemperature              203
 /allpix/det/setFlux                     0.e15
 /allpix/det/setLowTHL                   13. keV
