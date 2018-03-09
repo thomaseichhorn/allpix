@@ -79,7 +79,7 @@ void AllPixLCIOwriter::WriteEvent ( int runnr, int eventID, map < int, vector < 
 	{
 	    telescopePlanes++;
 	}
-	else if ( detId >= 350 && detId <= 353 )
+	else if ( detId >= 351 && detId <= 353 )
 	{
 	    cbcPlanes++;
 	}
@@ -151,7 +151,7 @@ void AllPixLCIOwriter::WriteEvent ( int runnr, int eventID, map < int, vector < 
 	    inTelescope = true;
 	    inCBC = false;
 	}
-	else if ( detId >= 350 && detId <= 353 )
+	else if ( detId >= 351 && detId <= 353 )
 	{
 	    inCBC = true;
 	    inTelescope = false;

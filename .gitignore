@@ -1,3 +1,7 @@
 *.root
 *.slcio
 *.dat
+lciobridge_allpix.txt
+lciobridge_allpix_dut.txt
+G4History.macro
+HitsListChargeDiffusionModel.txt
