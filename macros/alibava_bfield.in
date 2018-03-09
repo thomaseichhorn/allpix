@@ -108,6 +108,8 @@
 ####################################################################
 #### ALIBAVA DUT
 ####################################################################
+# Alibava rotations are included as in the gear file
+# alpha is first angle, second is 180.0 - beta, third is 180.0 - gamma
 
 # The box
 /allpix/extras/setApplianceType         99
@@ -117,9 +119,7 @@
 /allpix/extras/setApplianceType         98
 /allpix/extras/setAppliancePosition     0.0 0.0 270.0 mm
 
-# Alibava rotations are included as in the gear file
-# alpha is first angle, second is 180.0 - beta, third is 180.0 - gamma
-
+# The DUT
 /allpix/det/setId                       350
 /allpix/det/setPosition                 0.0 0.0 270.0 mm
 /allpix/det/setRotation                 0.0 180.0 180.00 deg
@@ -127,7 +127,11 @@
 /allpix/det/setFlux                     0.0e15
 /allpix/det/setLowTHL                   13.0 keV
 
-# Set a magnetic field, sign change wrt gear file
+
+####################################################################
+#### MAGNETIC FIELD
+####################################################################
+# sign change wrt gear file
 /allpix/extras/setPeakField             0.5 0.0 0.0 T
 
 
@@ -154,17 +158,17 @@
 #### VISUALISATION
 ####################################################################
 # theta is side angle, phi is top angle
-/vis/open OGLIXm 1024x768-100+100
-/vis/viewer/reset
-/vis/viewer/set/viewpointThetaPhi 40 35
-/vis/viewer/set/style wireframe
-/vis/scene/create
-/vis/scene/add/volume World -1 2
-/vis/scene/add/trajectories
-/vis/scene/add/hits
-/vis/sceneHandler/attach
-/tracking/storeTrajectory 1
-/vis/viewer/zoom 2.0
+#/vis/open OGLIXm 1024x768-100+100
+#/vis/viewer/reset
+#/vis/viewer/set/viewpointThetaPhi 40 35
+#/vis/viewer/set/style wireframe
+#/vis/scene/create
+#/vis/scene/add/volume World -1 2
+#/vis/scene/add/trajectories
+#/vis/scene/add/hits
+#/vis/sceneHandler/attach
+#/tracking/storeTrajectory 1
+#/vis/viewer/zoom 2.0
 
 
 ####################################################################
