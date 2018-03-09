@@ -128,7 +128,7 @@
 /allpix/det/setLowTHL                   13.0 keV
 
 # Set a magnetic field, sign change wrt gear file
-/allpix/extras/setPeakField             0.0 0.0 0.0 T
+/allpix/extras/setPeakField             0.5 0.0 0.0 T
 
 
 ####################################################################

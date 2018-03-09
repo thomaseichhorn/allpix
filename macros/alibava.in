@@ -193,7 +193,7 @@
 #### SHOOT
 ####################################################################
 # 'event count'
-/allpix/beam/frames 1
+/allpix/beam/frames 10000
 # 'rate'
 /allpix/beam/type const 2
 #/allpix/beam/type gauss 2 0.5
