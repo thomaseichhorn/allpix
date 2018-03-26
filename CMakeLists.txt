@@ -130,9 +130,9 @@ file(GLOB GDMLLIST RELATIVE ${PROJECT_SOURCE_DIR}  "models/*.gdml")
 set(ALLPIX_SCRIPTS
     ${MACROLIST}
     ${GDMLLIST}
-    macros/oneDetector_vis.in
-    macros/mpx3rx_vis.in
-    macros/mpx3rx.in
+    macros/other/oneDetector_vis.in
+    macros/other/mpx3rx_vis.in
+    macros/other/mpx3rx.in
 	models/pixeldetector.xml
 	models/clicpix_box_materials.xml
 	share/Erf.dat
