@@ -1,0 +1,205 @@
+####################################################################
+#### Simulation of a MPA chip in the DATURA Telescope at DESY
+####################################################################
+
+
+####################################################################
+#### DATURA0
+####################################################################
+
+# Al Holder
+/allpix/extras/setTestStructureType     8
+/allpix/extras/setTestStructurePosition 0.0 0.0 0.0 mm
+/allpix/extras/setTestStructureRotation 0.0 0.0 0.0 deg
+/allpix/extras/setTestStructureDetLink  300
+
+# Mimosa detector
+/allpix/det/setId                       300
+/allpix/det/setPosition                 0.0 0.0 0.0 mm
+/allpix/det/setRotation                 0.0 180.0 180.0 deg
+/allpix/det/setLowTHL                   13.0 keV
+
+
+####################################################################
+#### DATURA1
+####################################################################
+
+# Al Holder
+/allpix/extras/setTestStructureType     8
+/allpix/extras/setTestStructurePosition 0.0 0.0 153.0 mm
+/allpix/extras/setTestStructureRotation 0.0 0.0 0.0 deg
+/allpix/extras/setTestStructureDetLink  301
+
+# Mimosa detector
+/allpix/det/setId                       301
+/allpix/det/setPosition                 0.0 0.0 153.0 mm
+/allpix/det/setRotation                 0.0 180.0 180.0 deg
+/allpix/det/setLowTHL                   13.0 keV
+
+
+####################################################################
+#### DATURA2
+####################################################################
+
+# Al Holder
+/allpix/extras/setTestStructureType     8
+/allpix/extras/setTestStructurePosition 0.0 0.0 305.0 mm
+/allpix/extras/setTestStructureRotation 0.0 0.0 0.0 deg
+/allpix/extras/setTestStructureDetLink  302
+
+# Mimosa detector
+/allpix/det/setId                       302
+/allpix/det/setPosition                 0.0 0.0 305.0 mm
+/allpix/det/setRotation                 0.0 180.0 180.00 deg
+/allpix/det/setLowTHL                   13.0 keV
+
+
+####################################################################
+#### DATURA3
+####################################################################
+
+# Al Holder
+/allpix/extras/setTestStructureType     8
+/allpix/extras/setTestStructurePosition 0.0 0.0 459.0 mm
+/allpix/extras/setTestStructureRotation 0.0 0.0 0.0 deg
+/allpix/extras/setTestStructureDetLink  303
+
+# Mimosa detector
+/allpix/det/setId                       303
+/allpix/det/setPosition                 0.0 0.0 459.0 mm
+/allpix/det/setRotation                 0.0 180.0 180.0 deg
+/allpix/det/setLowTHL                   13.0 keV
+
+
+####################################################################
+#### DATURA4
+####################################################################
+
+# Al Holder
+/allpix/extras/setTestStructureType     8
+/allpix/extras/setTestStructurePosition 0.0 0.0 611 mm
+/allpix/extras/setTestStructureRotation 0.0 0.0 0.0 deg
+/allpix/extras/setTestStructureDetLink  304
+
+# Mimosa detector
+/allpix/det/setId                       304
+/allpix/det/setPosition                 0.0 0.0 611 mm
+/allpix/det/setRotation                 0.0 180.0 180 deg
+/allpix/det/setLowTHL                   13.0 keV
+
+
+####################################################################
+#### DATURA5
+####################################################################
+
+# Al Holder
+/allpix/extras/setTestStructureType     8
+/allpix/extras/setTestStructurePosition 0.0 0.0 763.0 mm
+/allpix/extras/setTestStructureRotation 0.0 0.0 0.0 deg
+/allpix/extras/setTestStructureDetLink  305
+
+# Mimosa detector
+/allpix/det/setId                       305
+/allpix/det/setPosition                 0.0 0.0 763.0 mm
+/allpix/det/setRotation                 0.0 180.0 180.0 deg
+/allpix/det/setLowTHL                   13.0 keV
+
+
+####################################################################
+#### MPA DUT
+####################################################################
+# MPA rotations are included as in the gear file
+# alpha is first angle, second is 180.0 - beta, third is 180.0 - gamma
+
+/allpix/det/setId                       910
+/allpix/det/setPosition                 0.0 0.0 382 mm
+/allpix/det/setRotation                 0.0 180.0 180.00 deg
+/allpix/det/setLowTHL                   13.0 keV
+
+
+####################################################################
+#### CMS Pixel Reference Module
+####################################################################
+
+/allpix/det/setId                       906
+/allpix/det/setPosition                 0.0 0.0 820.0 mm
+/allpix/det/setRotation                 23.0 14.5 180.00 deg
+/allpix/det/setLowTHL                   13.0 keV
+/allpix/det/skipPropagation             1
+
+
+####################################################################
+#### MAGNETIC FIELD
+####################################################################
+# sign change wrt gear file
+/allpix/extras/setPeakField             0.0 0.0 0.0 T
+
+
+####################################################################
+#### BUILD DETECTORS
+####################################################################
+/allpix/phys/Physics emstandard_opt0
+/allpix/det/setMaxStepLengthSensor 2 um
+/run/initialize
+/allpix/det/update
+
+
+####################################################################
+#### VERBOSE CONTROL
+####################################################################
+/run/verbose 0
+/control/verbose 0
+/control/saveHistory
+/tracking/verbose 0
+/allpix/phys/verbose 0
+
+
+####################################################################
+#### VISUALISATION
+####################################################################
+# theta is side angle, phi is top angle
+/vis/open OGLIXm 1024x768-100+100
+/vis/viewer/reset
+/vis/viewer/set/viewpointThetaPhi 40 35
+/vis/viewer/set/style wireframe
+/vis/scene/create
+/vis/scene/add/volume World -1 2
+/vis/scene/add/trajectories
+/vis/scene/add/hits
+/vis/sceneHandler/attach
+/tracking/storeTrajectory 1
+/vis/viewer/zoom 2.0
+
+
+####################################################################
+#### RUN
+####################################################################
+/vis/viewer/flush
+/allpix/eutelescope/setFolderPath output
+/allpix/eutelescope/write 1
+/gps/particle e-
+/gps/pos/type Plane
+/gps/pos/shape Circle
+/gps/pos/centre 0.0 0.0 -100.0 mm
+/gps/pos/radius 5000.0 um
+/gps/energy 5.0 GeV
+/gps/ene/type Gauss
+/gps/ene/sigma 0.1 GeV
+/gps/ang/type beam2d
+/gps/ang/sigma_x 0.001 rad
+/gps/ang/sigma_y 0.001 rad
+/gps/ang/rot1 -1.0 0.0 0.0
+/gps/pos/type Beam
+/gps/hist/type energy
+
+
+####################################################################
+#### SHOOT
+####################################################################
+# 'event count'
+/allpix/beam/frames 2
+# 'rate'
+/allpix/beam/type const 2
+#/allpix/beam/type gauss 2 0.5
+/allpix/beam/on
+
