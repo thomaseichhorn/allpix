@@ -1,5 +1,5 @@
 ####################################################################
-#### Simulation of an ALiBaVa strip sensor in the DATURA Telescope at DESY with a magnetic field with realistic misalignment
+#### Simulation of the DATURA Telescope at DESY
 ####################################################################
 
 
@@ -15,8 +15,8 @@
 
 # Mimosa detector
 /allpix/det/setId                       300
-/allpix/det/setPosition                 -0.0638042 0.0399299 -1.84126 mm
-/allpix/det/setRotation                 -0.0903554 179.636302 179.46 deg
+/allpix/det/setPosition                 0.0 0.0 0.0 mm
+/allpix/det/setRotation                 0.0 180.0 180.0 deg
 /allpix/det/setLowTHL                   13.0 keV
 
 
@@ -26,14 +26,14 @@
 
 # Al Holder
 /allpix/extras/setTestStructureType     8
-/allpix/extras/setTestStructurePosition 0.0 0.0 60.0 mm
+/allpix/extras/setTestStructurePosition 0.0 0.0 150.0 mm
 /allpix/extras/setTestStructureRotation 0.0 0.0 0.0 deg
 /allpix/extras/setTestStructureDetLink  301
 
 # Mimosa detector
 /allpix/det/setId                       301
-/allpix/det/setPosition                 -0.00305569 -0.0771026 59.772 mm
-/allpix/det/setRotation                 0.48447 179.655449 179.466 deg
+/allpix/det/setPosition                 0.0 0.0 150.0 mm
+/allpix/det/setRotation                 0.0 180.0 180.0 deg
 /allpix/det/setLowTHL                   13.0 keV
 
 
@@ -43,14 +43,14 @@
 
 # Al Holder
 /allpix/extras/setTestStructureType     8
-/allpix/extras/setTestStructurePosition 0.0 0.0 120.0 mm
+/allpix/extras/setTestStructurePosition 0.0 0.0 300.0 mm
 /allpix/extras/setTestStructureRotation 0.0 0.0 0.0 deg
 /allpix/extras/setTestStructureDetLink  302
 
 # Mimosa detector
 /allpix/det/setId                       302
-/allpix/det/setPosition                 0.0280397 -0.0375547 118.352 mm
-/allpix/det/setRotation                 0.152951 179.16418 179.77 deg
+/allpix/det/setPosition                 0.0 0.0 300.0 mm
+/allpix/det/setRotation                 0.0 180.0 180.00 deg
 /allpix/det/setLowTHL                   13.0 keV
 
 
@@ -60,14 +60,14 @@
 
 # Al Holder
 /allpix/extras/setTestStructureType     8
-/allpix/extras/setTestStructurePosition 0.0 0.0 419.0 mm
+/allpix/extras/setTestStructurePosition 0.0 0.0 450.0 mm
 /allpix/extras/setTestStructureRotation 0.0 0.0 0.0 deg
 /allpix/extras/setTestStructureDetLink  303
 
 # Mimosa detector
 /allpix/det/setId                       303
-/allpix/det/setPosition                 -0.0720512 0.0207572 419.417 mm
-/allpix/det/setRotation                 -0.364973 179.71242 179.358 deg
+/allpix/det/setPosition                 0.0 0.0 450.0 mm
+/allpix/det/setRotation                 0.0 180.0 180.0 deg
 /allpix/det/setLowTHL                   13.0 keV
 
 
@@ -77,14 +77,14 @@
 
 # Al Holder
 /allpix/extras/setTestStructureType     8
-/allpix/extras/setTestStructurePosition 0.0 0.0 479 mm
+/allpix/extras/setTestStructurePosition 0.0 0.0 600 mm
 /allpix/extras/setTestStructureRotation 0.0 0.0 0.0 deg
 /allpix/extras/setTestStructureDetLink  304
 
 # Mimosa detector
 /allpix/det/setId                       304
-/allpix/det/setPosition                 -0.0840014 0.0329771 478.694 mm
-/allpix/det/setRotation                 -1.21825 181.38484 179.357 deg
+/allpix/det/setPosition                 0.0 0.0 600 mm
+/allpix/det/setRotation                 0.0 180.0 180 deg
 /allpix/det/setLowTHL                   13.0 keV
 
 
@@ -94,37 +94,14 @@
 
 # Al Holder
 /allpix/extras/setTestStructureType     8
-/allpix/extras/setTestStructurePosition 0.0 0.0 539.0 mm
+/allpix/extras/setTestStructurePosition 0.0 0.0 750.0 mm
 /allpix/extras/setTestStructureRotation 0.0 0.0 0.0 deg
 /allpix/extras/setTestStructureDetLink  305
 
 # Mimosa detector
 /allpix/det/setId                       305
-/allpix/det/setPosition                 -0.0215497 0.0310405 539.134 mm
-/allpix/det/setRotation                 0.341192 177.77751 180.397 deg
-/allpix/det/setLowTHL                   13.0 keV
-
-
-####################################################################
-#### ALIBAVA DUT
-####################################################################
-# Alibava rotations are included as in the gear file
-# alpha is first angle, second is 180.0 - beta, third is 180.0 - gamma
-
-# The box
-/allpix/extras/setApplianceType         99
-/allpix/extras/setAppliancePosition     0.0 0.0 270.0 mm
-
-# The holder
-/allpix/extras/setApplianceType         98
-/allpix/extras/setAppliancePosition     0.0 0.0 270.0 mm
-
-# The DUT
-/allpix/det/setId                       350
-/allpix/det/setPosition                 -0.0208888 -0.0477181 270.563 mm
-/allpix/det/setRotation                 -0.627387 179.9610927 179.403 deg
-/allpix/det/setTemperature              203
-/allpix/det/setFlux                     0.e15
+/allpix/det/setPosition                 0.0 0.0 750.0 mm
+/allpix/det/setRotation                 0.0 180.0 180.0 deg
 /allpix/det/setLowTHL                   13.0 keV
 
 
@@ -132,7 +109,7 @@
 #### MAGNETIC FIELD
 ####################################################################
 # sign change wrt gear file
-/allpix/extras/setPeakField             0.5 0.0 0.0 T
+/allpix/extras/setPeakField             0.0 0.0 0.0 T
 
 
 ####################################################################
