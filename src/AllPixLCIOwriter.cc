@@ -79,7 +79,7 @@ void AllPixLCIOwriter::WriteEvent ( int runnr, int eventID, map < int, vector < 
 	{
 	    telescopePlanes++;
 	}
-	else if ( detId >= 351 && detId <= 353 )
+	else if ( ( detId >= 351 && detId <= 353 ) || detId == 910 )
 	{
 	    cbcPlanes++;
 	}
@@ -151,7 +151,7 @@ void AllPixLCIOwriter::WriteEvent ( int runnr, int eventID, map < int, vector < 
 	    inTelescope = true;
 	    inCBC = false;
 	}
-	else if ( detId >= 351 && detId <= 353 )
+	else if ( ( detId >= 351 && detId <= 353 ) || detId == 910 )
 	{
 	    inCBC = true;
 	    inTelescope = false;
@@ -184,6 +184,10 @@ void AllPixLCIOwriter::WriteEvent ( int runnr, int eventID, map < int, vector < 
 	    if ( detId == 352 )
 	    {
 		sensoridtowrite = 31;
+	    }
+	    if ( detId == 910 )
+	    {
+		sensoridtowrite = 30;
 	    }
 	    cbcEncoder["sensorID"] = sensoridtowrite;
 	    cbcEncoder["sparsePixelType"] = 2;
@@ -253,15 +257,15 @@ void AllPixLCIOwriter::WriteEvent ( int runnr, int eventID, map < int, vector < 
 
 	if ( detId == 900 )
 	{
-	    sprintf ( collectionName, "CMSPixelDUT" );
+	    sprintf ( collectionName, "CMSPixelDUTsim" );
 	}
 	else if ( detId == 901 )
 	{
-	    sprintf ( collectionName, "CMSPixelREF" );
+	    sprintf ( collectionName, "CMSPixelREFsim" );
 	}
 	else if ( detId == 906 )
 	{
-	    sprintf ( collectionName, "CMSPixelQUAD" );
+	    sprintf ( collectionName, "CMSPixelQUADsim" );
 	}
 	else
 	{
