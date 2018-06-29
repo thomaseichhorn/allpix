@@ -113,7 +113,7 @@
 
 /allpix/det/setId                       910
 /allpix/det/setPosition                 0.0 0.0 382 mm
-/allpix/det/setRotation                 0.0 180.0 180.00 deg
+/allpix/det/setRotation                 180.0 180.0 180.00 deg
 /allpix/det/setLowTHL                   13.0 keV
 
 
@@ -123,7 +123,7 @@
 
 /allpix/det/setId                       906
 /allpix/det/setPosition                 0.0 0.0 820.0 mm
-/allpix/det/setRotation                 23.0 14.5 180.00 deg
+/allpix/det/setRotation                 23.0 -15.5 180.00 deg
 /allpix/det/setLowTHL                   13.0 keV
 /allpix/det/skipPropagation             1
 
@@ -182,7 +182,7 @@
 /gps/pos/shape Circle
 /gps/pos/centre 0.0 0.0 -100.0 mm
 /gps/pos/radius 5000.0 um
-/gps/energy 5.0 GeV
+/gps/energy 5.6 GeV
 /gps/ene/type Gauss
 /gps/ene/sigma 0.1 GeV
 /gps/ang/type beam2d
