@@ -112,12 +112,12 @@
 # alpha is first angle, second is 180.0 - beta, third is 180.0 - gamma
 
 /allpix/det/setId                       351
-/allpix/det/setPosition                 0.0 0.0 370 mm
+/allpix/det/setPosition                 0.0 0.0 369 mm
 /allpix/det/setRotation                 0.0 180.0 180.00 deg
 /allpix/det/setLowTHL                   13.0 keV
 
 /allpix/det/setId                       352
-/allpix/det/setPosition                 0.0 0.0 372 mm
+/allpix/det/setPosition                 0.0 0.0 373 mm
 /allpix/det/setRotation                 0.0 180.0 180.00 deg
 /allpix/det/setLowTHL                   13.0 keV
 
@@ -128,7 +128,8 @@
 
 /allpix/det/setId                       906
 /allpix/det/setPosition                 0.0 0.0 692.0 mm
-/allpix/det/setRotation                 23.0 14.5 180.00 deg
+#/allpix/det/setRotation                 23.0 14.5 180.00 deg
+/allpix/det/setRotation                 0.0 0.0 180.00 deg
 /allpix/det/setLowTHL                   13.0 keV
 /allpix/det/skipPropagation             1
 
@@ -163,17 +164,17 @@
 #### VISUALISATION
 ####################################################################
 # theta is side angle, phi is top angle
-#/vis/open OGLIXm 1024x768-100+100
-#/vis/viewer/reset
-#/vis/viewer/set/viewpointThetaPhi 40 35
-#/vis/viewer/set/style wireframe
-#/vis/scene/create
-#/vis/scene/add/volume World -1 2
-#/vis/scene/add/trajectories
-#/vis/scene/add/hits
-#/vis/sceneHandler/attach
-#/tracking/storeTrajectory 1
-#/vis/viewer/zoom 2.0
+##/vis/open OGLIXm 1024x768-100+100
+##/vis/viewer/reset
+##/vis/viewer/set/viewpointThetaPhi 40 35
+##/vis/viewer/set/style wireframe
+##/vis/scene/create
+##/vis/scene/add/volume World -1 2
+##/vis/scene/add/trajectories
+##/vis/scene/add/hits
+##/vis/sceneHandler/attach
+##/tracking/storeTrajectory 1
+##/vis/viewer/zoom 2.0
 
 
 ####################################################################
@@ -202,9 +203,9 @@
 #### SHOOT
 ####################################################################
 # 'event count'
-/allpix/beam/frames 10000
+/allpix/beam/frames 50000
 # 'rate'
-/allpix/beam/type const 2
-#/allpix/beam/type gauss 2 0.5
+#/allpix/beam/type const 2
+/allpix/beam/type gauss 3 0.5
 /allpix/beam/on
 
