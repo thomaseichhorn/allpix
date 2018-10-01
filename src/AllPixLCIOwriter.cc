@@ -246,7 +246,15 @@ void AllPixLCIOwriter::WriteEvent ( int runnr, int eventID, map < int, vector < 
 	    {
 		pixelData.push_back ( x );
 		pixelData.push_back ( y );
-		pixelData.push_back ( tot );
+		// HACK make it binary
+		if ( ( detId == 351 || detId == 352 || detId == 910 ) && tot > 0 )
+		{
+		    pixelData.push_back ( 1 );
+		}
+		else
+		{
+		    pixelData.push_back ( tot );
+		}
 		pixelData.push_back ( 0 );
 	    }
 	}
