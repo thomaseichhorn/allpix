@@ -6,41 +6,41 @@
 <!-- MPA -->
 <pixeldet id="910">
 
-<digitizer>Mimosa26</digitizer>
+<digitizer>MCTruth</digitizer>
 
 <npix_x>118</npix_x>
 <npix_y>16</npix_y>
 <npix_z>0</npix_z>
 
-<pixsize_x units="um">100.0</pixsize_x>
-<pixsize_y units="um">1467.0</pixsize_y>
-<pixsize_z units="um">142.5.</pixsize_z>
+<pixsize_x units="um">50.0</pixsize_x>
+<pixsize_y units="um">733.5</pixsize_y>
+<pixsize_z units="um">100.0.</pixsize_z>
 
-<sensor_hx units="um">11800.0</sensor_hx>
-<sensor_hy units="um">23472.0</sensor_hy>
-<sensor_hz units="um">142.5</sensor_hz>
+<sensor_hx units="um">5901.0</sensor_hx>
+<sensor_hy units="um">11737.0</sensor_hy>
+<sensor_hz units="um">100.0</sensor_hz>
 
 <!-- unchecked -->
-<sensor_gr_excess_htop units="um">375.0</sensor_gr_excess_htop>
-<sensor_gr_excess_hbottom units="um">375.0</sensor_gr_excess_hbottom>
-<sensor_gr_excess_hright units="um">475.0</sensor_gr_excess_hright>
-<sensor_gr_excess_hleft units="um">475.0</sensor_gr_excess_hleft>
+<sensor_gr_excess_htop units="um">0.5</sensor_gr_excess_htop>
+<sensor_gr_excess_hbottom units="um">0.5</sensor_gr_excess_hbottom>
+<sensor_gr_excess_hright units="um">0.5</sensor_gr_excess_hright>
+<sensor_gr_excess_hleft units="um">0.5</sensor_gr_excess_hleft>
 
 <sensor_posx units="mm">0</sensor_posx>
 <sensor_posy units="mm">0</sensor_posy>
 <sensor_posz units="mm">0</sensor_posz>
 
-<chip_hx units="um">11800.0</chip_hx>
-<chip_hy units="um">23472.0</chip_hy>
+<chip_hx units="um">5901.0</chip_hx>
+<chip_hy units="um">11737.0</chip_hy>
 <chip_hz units="um">0.0</chip_hz>
 
 <chip_posx units="um">0.</chip_posx>
 <chip_posy units="um">0.</chip_posy>
 <chip_posz units="um">0.</chip_posz>
 
-<pcb_hx units="mm">31.2</pcb_hx>
-<pcb_hy units="mm">8.0</pcb_hy>
-<pcb_hz units="mm">0.00000001</pcb_hz>
+<pcb_hx units="um">11800.0</pcb_hx>
+<pcb_hy units="um">23472.0</pcb_hy>
+<pcb_hz units="um">0.0</pcb_hz>
 
 </pixeldet>
 
@@ -79,9 +79,9 @@
 <chip_posy units="um">0.</chip_posy>
 <chip_posz units="um">0.</chip_posz>
 
-<pcb_hx units="mm">31.2</pcb_hx>
-<pcb_hy units="mm">8.0</pcb_hy>
-<pcb_hz units="mm">0.00000001</pcb_hz>
+<pcb_hx units="um">31200.0</pcb_hx>
+<pcb_hy units="um">8000.0</pcb_hy>
+<pcb_hz units="um">0.0</pcb_hz>
 
 </pixeldet>
 
